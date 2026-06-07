@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réserver une Consultation Gratuite — Denti Luxe</title>
+  <meta name="description" content="Réservez votre consultation gratuite chez Denti Luxe. Remplissez le formulaire en 2 minutes et recevez une confirmation WhatsApp sous 30 minutes.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--off-white); }
+
+    .reservation-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 100px 0 60px;
+    }
+
+    .reservation-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 48px;
+      align-items: start;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .reservation-info {
+      color: var(--white);
+      position: sticky;
+      top: 100px;
+    }
+
+    .reservation-info h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .reservation-info h1 span { color: var(--gold); font-style: italic; }
+
+    .reservation-info p {
+      font-size: .95rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .resa-benefits { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+    .resa-benefit {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .resa-benefit i { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+    .resa-benefit span { font-size: .88rem; color: rgba(255,255,255,.85); }
+
+    .resa-guarantee {
+      background: rgba(201,160,51,.1);
+      border: 1px solid rgba(201,160,51,.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .resa-guarantee i { color: var(--gold); font-size: 1.4rem; flex-shrink: 0; }
+    .resa-guarantee strong { display: block; color: var(--white); font-size: .9rem; }
+    .resa-guarantee span { font-size: .8rem; color: rgba(255,255,255,.55); }
+
+    /* Progress */
+    .progress-wrapper {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .progress-header {
+      background: var(--navy);
+      padding: 24px 32px;
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .step-indicators { display: flex; gap: 8px; flex: 1; }
+    .step-indicator {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,.15);
+      border-radius: 2px;
+      transition: background var(--transition);
+    }
+    .step-indicator.active { background: var(--gold); }
+
+    .progress-header .step-label { font-size: .82rem; color: rgba(255,255,255,.5); white-space: nowrap; }
+    .progress-header .step-label strong { color: var(--white); }
+
+    .progress-body { padding: 32px; }
+
+    .step-content { display: none; }
+    .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 6px; }
+    .step-subtitle { font-size: .88rem; color: var(--gray-600); margin-bottom: 28px; }
+
+    .option-cards { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+    .option-card {
+      display: flex; align-items: center; gap: 14px;
+      border: 2px solid var(--gray-100);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .option-card:hover { border-color: var(--gold); }
+    .option-card input[type="radio"] { display: none; }
+    .option-card.selected { border-color: var(--gold); background: var(--gold-pale); }
+
+    .option-icon { font-size: 2rem; flex-shrink: 0; }
+    .option-label { font-weight: 600; font-size: .95rem; color: var(--navy); }
+    .option-desc { font-size: .82rem; color: var(--gray-600); margin-top: 2px; }
+    .option-price { margin-left: auto; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+
+    .resa-form .form-group label { color: var(--gray-800); }
+    .resa-form input, .resa-form select, .resa-form textarea {
+      background: var(--off-white) !important;
+      border: 1px solid var(--gray-300) !important;
+      color: var(--gray-800) !important;
+    }
+    .resa-form input::placeholder, .resa-form textarea::placeholder { color: var(--gray-300) !important; }
+    .resa-form input:focus, .resa-form select:focus { border-color: var(--gold) !important; }
+
+    .step-nav { display: flex; gap: 12px; margin-top: 24px; }
+    .step-nav .step-prev { background: var(--gray-100); color: var(--gray-800); }
+    .step-nav .step-prev:hover { background: var(--gray-300); }
+
+    .summary-box {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: .9rem;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row .key { color: var(--gray-600); }
+    .summary-row .value { font-weight: 600; color: var(--navy); }
+    .summary-row.total .value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .reservation-layout { grid-template-columns: 1fr; }
+      .reservation-info { position: static; }
+      .reservation-info h1 { font-size: 1.8rem; }
+      .progress-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="container inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🦷</div>
+      <div class="logo-text">Denti <span>Luxe</span></div>
+    </a>
+    <div></div>
+    <div class="header-cta">
+      <a class="btn btn-whatsapp" data-wa="rdv" href="#" style="padding:11px 20px;font-size:.85rem;">
+        <i class="fa-brands fa-whatsapp"></i> Aide par WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- RESERVATION PAGE -->
+<div class="reservation-page">
+  <div class="container">
+    <div class="reservation-layout">
+
+      <!-- LEFT: Info -->
+      <div class="reservation-info">
+        <div class="section-tag">Consultation Gratuite</div>
+        <h1>Réservez votre<br><span>rendez-vous</span></h1>
+        <p>Complétez ce formulaire en moins de 2 minutes. Notre équipe vous contacte sur WhatsApp sous 30 minutes pour confirmer votre créneau.</p>
+
+        <div class="resa-benefits">
+          <div class="resa-benefit">
+            <i class="fa-solid fa-gift"></i>
+            <span>Consultation 100% gratuite et sans engagement</span>
+          </div>
+          <div class="resa-benefit">
+            <i class="fa-solid fa-clock"></i>
+            <span>Confirmation sous 30 minutes via WhatsApp</span>
+          </div>
+          <div class="resa-benefit">
+            <i class="fa-solid fa-calendar"></i>
+            <span>Créneaux disponibles 6 jours sur 7</span>
+          </div>
+          <div class="resa-benefit">
+            <i class="fa-solid fa-eye"></i>
+            <span>Visualisation de votre sourire avant traitement</span>
+          </div>
+          <div class="resa-benefit">
+            <i class="fa-solid fa-shield-check"></i>
+            <span>Devis personnalisé offert lors de la consultation</span>
+          </div>
+        </div>
+
+        <div class="resa-guarantee">
+          <i class="fa-solid fa-star"></i>
+          <div>
+            <strong>Satisfaction garantie à 100%</strong>
+            <span>Si vous n'êtes pas satisfait du résultat, nous effectuons une retouche gratuite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Multi-step form -->
+      <div class="progress-wrapper">
+        <div class="progress-header">
+          <div class="step-indicators">
+            <div class="step-indicator active" data-step="0"></div>
+            <div class="step-indicator" data-step="1"></div>
+            <div class="step-indicator" data-step="2"></div>
+            <div class="step-indicator" data-step="3"></div>
+          </div>
+          <div class="step-label">Étape <strong id="step-num">1</strong> / 4</div>
+        </div>
+
+        <div class="progress-body">
+          <form id="reservation-form" class="resa-form">
+
+            <!-- STEP 1: Choose Pack -->
+            <div class="step-content" style="display:block;">
+              <h2 class="step-title">Quelle transformation souhaitez-vous ?</h2>
+              <p class="step-subtitle">Choisissez le pack qui correspond à votre objectif. Vous pourrez en discuter lors de la consultation gratuite.</p>
+
+              <div class="option-cards">
+                <label class="option-card" onclick="selectOption(this, 'offer', 'Pack Essentiel — 8 facettes')">
+                  <input type="radio" name="offer" value="Pack Essentiel — 8 facettes">
+                  <div class="option-icon">😬</div>
+                  <div>
+                    <div class="option-label">Pack Essentiel</div>
+                    <div class="option-desc">8 facettes — Dents du sourire</div>
+                  </div>
+                  <div class="option-price">1 500 DH</div>
+                </label>
+
+                <label class="option-card" onclick="selectOption(this, 'offer', 'Pack Premium — 16 facettes')">
+                  <input type="radio" name="offer" value="Pack Premium — 16 facettes">
+                  <div class="option-icon">😁</div>
+                  <div>
+                    <div class="option-label">Pack Premium ⭐ Le + Populaire</div>
+                    <div class="option-desc">16 facettes — Sourire complet et harmonieux</div>
+                  </div>
+                  <div class="option-price">2 500 DH</div>
+                </label>
+
+                <label class="option-card" onclick="selectOption(this, 'offer', 'Pack Complet — 20 facettes')">
+                  <input type="radio" name="offer" value="Pack Complet — 20 facettes">
+                  <div class="option-icon">🌟</div>
+                  <div>
+                    <div class="option-label">Pack Complet</div>
+                    <div class="option-desc">20 facettes — Transformation totale du sourire</div>
+                  </div>
+                  <div class="option-price">3 000 DH</div>
+                </label>
+
+                <label class="option-card" onclick="selectOption(this, 'offer', 'Je ne sais pas — Conseiller moi')">
+                  <input type="radio" name="offer" value="Je ne sais pas — Conseiller moi">
+                  <div class="option-icon">🤔</div>
+                  <div>
+                    <div class="option-label">Je ne sais pas encore</div>
+                    <div class="option-desc">Notre expert vous conseillera lors de la consultation gratuite</div>
+                  </div>
+                  <div class="option-price" style="font-size:1rem;color:var(--gray-600);">Gratuit</div>
+                </label>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-gold step-next" style="flex:1;justify-content:center;">
+                  Continuer <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Concerns -->
+            <div class="step-content">
+              <h2 class="step-title">Qu'est-ce qui vous gêne dans votre sourire ?</h2>
+              <p class="step-subtitle">Ces informations aident notre praticien à préparer votre consultation.</p>
+
+              <div class="form-group">
+                <label>Mes principales préoccupations (cochez tout ce qui s'applique)</label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Dents jaunies/tachées" style="width:auto;accent-color:var(--gold);"> Dents jaunies / tachées
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Dents écartées" style="width:auto;accent-color:var(--gold);"> Dents écartées (diastèmes)
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Forme irrégulière" style="width:auto;accent-color:var(--gold);"> Forme irrégulière
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Dents trop petites" style="width:auto;accent-color:var(--gold);"> Dents trop petites
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Dents cassées/ébréchées" style="width:auto;accent-color:var(--gold);"> Dents cassées / ébréchées
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem;color:var(--gray-800);">
+                    <input type="checkbox" name="concern" value="Dents décalées" style="width:auto;accent-color:var(--gold);"> Dents décalées
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="notes">Informations supplémentaires (optionnel)</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Décrivez votre situation, vos questions ou attentes..."></textarea>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn step-prev" style="flex:0 0 auto;">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button type="button" class="btn btn-gold step-next" style="flex:1;justify-content:center;">
+                  Continuer <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Contact -->
+            <div class="step-content">
+              <h2 class="step-title">Vos coordonnées</h2>
+              <p class="step-subtitle">Pour confirmer votre consultation gratuite par WhatsApp.</p>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">Prénom *</label>
+                  <input type="text" id="fname" name="name" placeholder="Votre prénom" required>
+                </div>
+                <div class="form-group">
+                  <label for="lname">Nom (optionnel)</label>
+                  <input type="text" id="lname" name="lastname" placeholder="Votre nom">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="rphone">Téléphone WhatsApp *</label>
+                <input type="tel" id="rphone" name="phone" placeholder="+212 6 XX XX XX XX" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">Votre Ville *</label>
+                  <select id="city" name="city" required>
+                    <option value="">— Choisissez —</option>
+                    <option>Casablanca</option>
+                    <option>Rabat</option>
+                    <option>Marrakech</option>
+                    <option>Fès</option>
+                    <option>Agadir</option>
+                    <option>Tanger</option>
+                    <option>Meknès</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="date">Date Préférée</label>
+                  <input type="date" id="date" name="date">
+                </div>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn step-prev" style="flex:0 0 auto;">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button type="button" class="btn btn-gold step-next" style="flex:1;justify-content:center;">
+                  Voir le Récapitulatif <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Summary + Submit -->
+            <div class="step-content">
+              <h2 class="step-title">Récapitulatif de votre demande</h2>
+              <p class="step-subtitle">Vérifiez vos informations et confirmez votre consultation gratuite.</p>
+
+              <div class="summary-box">
+                <div class="summary-row">
+                  <span class="key">Offre choisie</span>
+                  <span class="value" id="sum-offer">—</span>
+                </div>
+                <div class="summary-row">
+                  <span class="key">Prénom</span>
+                  <span class="value" id="sum-name">—</span>
+                </div>
+                <div class="summary-row">
+                  <span class="key">Téléphone</span>
+                  <span class="value" id="sum-phone">—</span>
+                </div>
+                <div class="summary-row">
+                  <span class="key">Ville</span>
+                  <span class="value" id="sum-city">—</span>
+                </div>
+                <div class="summary-row">
+                  <span class="key">Date préférée</span>
+                  <span class="value" id="sum-date">À confirmer</span>
+                </div>
+                <div class="summary-row total">
+                  <span class="key">Consultation</span>
+                  <span class="value">100% Gratuite 🎁</span>
+                </div>
+              </div>
+
+              <div style="background:rgba(39,174,96,.08);border:1px solid rgba(39,174,96,.25);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                <i class="fa-solid fa-check-circle" style="color:#27ae60;font-size:1.2rem;flex-shrink:0;"></i>
+                <p style="font-size:.85rem;color:#27ae60;margin:0;">Votre consultation est gratuite et sans engagement. Nous vous contacterons sous 30 minutes.</p>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn step-prev" style="flex:0 0 auto;">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button type="submit" class="btn btn-whatsapp" style="flex:1;justify-content:center;font-size:1rem;padding:16px;">
+                  <i class="fa-brands fa-whatsapp"></i> Confirmer via WhatsApp
+                </button>
+              </div>
+              <p style="font-size:.78rem;color:var(--gray-600);text-align:center;margin-top:10px;">
+                <i class="fa-solid fa-lock" style="color:var(--green);"></i> Vos données sont 100% confidentielles
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<a id="float-whatsapp" data-wa="rdv" href="#">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="tooltip">Consultation Gratuite 💬</span>
+</a>
+
+<script src="js/main.js"></script>
+<script>
+function selectOption(el, name, value) {
+  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+}
+
+// Update summary when reaching step 4
+document.getElementById('reservation-form').addEventListener('change', updateSummary);
+document.getElementById('reservation-form').addEventListener('input', updateSummary);
+
+function updateSummary() {
+  const form = document.getElementById('reservation-form');
+  const data = new FormData(form);
+  const offer = data.get('offer') || '—';
+  const name = data.get('name') || '—';
+  const phone = data.get('phone') || '—';
+  const city = data.get('city') || '—';
+  const date = data.get('date') || 'À confirmer';
+
+  const setEl = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+  setEl('sum-offer', offer);
+  setEl('sum-name', name);
+  setEl('sum-phone', phone);
+  setEl('sum-city', city);
+  setEl('sum-date', date);
+}
+
+// Update step number display
+const origShow = window.show;
+const stepNumEl = document.getElementById('step-num');
+function patchStepNum(i) { if (stepNumEl) stepNumEl.textContent = i + 1; }
+
+// Hook into step navigation
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtns = document.querySelectorAll('.step-next');
+  nextBtns.forEach(btn => {
+    btn.addEventListener('click', updateSummary);
+  });
+});
+</script>
+</body>
+</html>
