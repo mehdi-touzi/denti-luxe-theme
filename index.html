@@ -1,97 +1,933 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Denti-Luxe — Éditeur Exocad</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denti Luxe — Facettes Composites Premium | Sourire Parfait en 1 Séance · Maroc</title>
+  <meta name="description" content="Transformez votre sourire avec les facettes dentaires composites Denti Luxe. Résultats naturels en 1 séance dès 1 500 DH. +500 patients satisfaits au Maroc. Consultation gratuite.">
+  <meta property="og:title" content="Denti Luxe — Facettes Composites Premium au Maroc">
+  <meta property="og:description" content="Votre sourire de rêve en 1 séance à partir de 1 500 DH. Consultation gratuite.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <span class="logo-icon">🦷</span>
-      <span class="logo-text">Denti<strong>Luxe</strong></span>
+
+<!-- ===== NOTIFICATION BAR ===== -->
+<div id="notif-bar">
+  <div class="container">
+    🔥 <strong>Offre de lancement :</strong> Consultation gratuite offerte + 10% de réduction — Places limitées cette semaine !
+    <span class="notif-close"><i class="fa-solid fa-xmark"></i></span>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="container inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🦷</div>
+      <div class="logo-text">Denti <span>Luxe</span></div>
+    </a>
+
+    <nav>
+      <a href="#offres">Nos Offres</a>
+      <a href="#avant-apres">Avant / Après</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#faq">FAQ</a>
+      <a href="reservation.html">Réserver</a>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn btn-whatsapp" data-wa="rdv" href="#" style="padding:11px 20px;font-size:.85rem;">
+        <i class="fa-brands fa-whatsapp"></i> Consultation Gratuite
+      </a>
     </div>
-    <p class="tagline">Éditeur de fichiers Exocad</p>
-  </header>
 
-  <main>
-    <!-- Zone de dépôt -->
-    <section id="drop-zone" class="card drop-zone" aria-label="Zone de dépôt de fichier">
-      <div class="drop-inner">
-        <div class="drop-icon">📂</div>
-        <p class="drop-title">Déposez votre fichier exocad ici</p>
-        <p class="drop-subtitle">Formats supportés : <code>.constructionInfo</code>, <code>.xml</code>, <code>.3ox</code></p>
-        <label class="btn btn-primary" for="file-input">
-          Choisir un fichier
-          <input type="file" id="file-input" accept=".constructionInfo,.xml,.3ox,.txt" hidden />
-        </label>
-      </div>
-    </section>
+    <div id="mobile-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
 
-    <!-- Panneau d'édition (masqué jusqu'au chargement) -->
-    <section id="editor-panel" class="hidden">
-      <div class="editor-header card">
-        <div class="file-info">
-          <span class="file-icon">📄</span>
+<!-- Mobile Nav -->
+<nav id="mobile-nav">
+  <span id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></span>
+  <a href="#offres">Nos Offres</a>
+  <a href="#avant-apres">Avant / Après</a>
+  <a href="#temoignages">Témoignages</a>
+  <a href="#faq">FAQ</a>
+  <a href="reservation.html">Réserver</a>
+  <a class="btn btn-whatsapp" data-wa="rdv" href="#" style="margin-top:8px;">
+    <i class="fa-brands fa-whatsapp"></i> Consultation Gratuite
+  </a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fa-solid fa-star"></i>
+          N°1 des Facettes Composites au Maroc
+        </div>
+
+        <h1 class="hero-title">
+          Votre <span class="gold">Sourire de Star</span><br>
+          en une seule séance
+        </h1>
+
+        <p class="hero-subtitle">
+          Fini les dents tachées, écartées ou irrégulières. Avec Denti Luxe, obtenez des facettes composites naturelles et durables — sans douleur, sans attente, sans compromis.
+        </p>
+
+        <div class="hero-price">
           <div>
-            <p id="file-name" class="file-name">—</p>
-            <p id="file-type" class="file-type">—</p>
+            <div class="label">À partir de</div>
+          </div>
+          <div>
+            <div class="amount">1 500</div>
+          </div>
+          <div>
+            <div class="dh">DH</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">8 facettes</div>
           </div>
         </div>
-        <div class="editor-actions">
-          <button class="btn btn-secondary" id="btn-reset">Nouveau fichier</button>
-          <button class="btn btn-success" id="btn-download">⬇ Télécharger le fichier corrigé</button>
+
+        <div class="hero-actions">
+          <a class="btn btn-whatsapp btn-lg" data-wa="rdv" href="#">
+            <i class="fa-brands fa-whatsapp"></i> Consultation Gratuite
+          </a>
+          <a class="btn btn-outline btn-lg" href="#offres">
+            <i class="fa-solid fa-eye"></i> Voir les Offres
+          </a>
         </div>
-      </div>
 
-      <!-- Onglets -->
-      <div class="tabs card">
-        <button class="tab-btn active" data-tab="params">Paramètres</button>
-        <button class="tab-btn" data-tab="raw">Code XML brut</button>
-        <button class="tab-btn" data-tab="summary">Résumé</button>
-      </div>
-
-      <!-- Onglet : Paramètres -->
-      <div id="tab-params" class="tab-content card">
-        <div class="section-header">
-          <h2>Paramètres du fichier</h2>
-          <div class="search-box">
-            <input type="text" id="param-search" placeholder="Rechercher un paramètre…" />
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="number" data-count="500" data-suffix="+">0+</div>
+            <div class="label">Sourires transformés</div>
+          </div>
+          <div class="hero-stat">
+            <div class="number" data-count="98" data-suffix="%">0%</div>
+            <div class="label">Taux de satisfaction</div>
+          </div>
+          <div class="hero-stat">
+            <div class="number">1</div>
+            <div class="label">Séance seulement</div>
           </div>
         </div>
-        <div id="params-container"></div>
       </div>
 
-      <!-- Onglet : XML brut -->
-      <div id="tab-raw" class="tab-content card hidden">
-        <div class="section-header">
-          <h2>Code XML brut</h2>
-          <button class="btn btn-secondary btn-sm" id="btn-copy-xml">Copier</button>
+      <div class="hero-visual">
+        <div class="hero-card-main">
+          <div class="hero-badge-float top-left">
+            <i class="fa-solid fa-shield-check"></i> Résultat Garanti
+          </div>
+          <div class="hero-badge-float bottom-right">
+            <i class="fa-solid fa-calendar-check"></i> RDV sous 48h
+          </div>
+          <div class="smile-visual">😁</div>
+          <div class="hero-card-label">Transformation Complète</div>
+          <div class="hero-card-sub">Résultats visibles dès la première séance</div>
+          <div class="hero-features">
+            <div class="hero-feature">
+              <i class="fa-solid fa-check"></i>
+              <span>Facettes en composite de haute qualité</span>
+            </div>
+            <div class="hero-feature">
+              <i class="fa-solid fa-check"></i>
+              <span>Couleur personnalisée selon votre teint</span>
+            </div>
+            <div class="hero-feature">
+              <i class="fa-solid fa-check"></i>
+              <span>Sans grinding — préserve vos dents naturelles</span>
+            </div>
+            <div class="hero-feature">
+              <i class="fa-solid fa-check"></i>
+              <span>Durée de vie 3–7 ans avec entretien</span>
+            </div>
+          </div>
         </div>
-        <textarea id="raw-xml" spellcheck="false"></textarea>
-        <div class="raw-actions">
-          <button class="btn btn-primary" id="btn-apply-raw">Appliquer les modifications XML</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div id="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="trust-text">
+          <strong>+500 Patients</strong>
+          <span>Satisfaits au Maroc</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-star"></i></div>
+        <div class="trust-text">
+          <strong>98% de Satisfaction</strong>
+          <span>Notés 5 étoiles</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="trust-text">
+          <strong>1 Séance</strong>
+          <span>Résultat immédiat</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="trust-text">
+          <strong>Satisfaction Garantie</strong>
+          <span>Ou retouche offerte</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="trust-text">
+          <strong>Consultation Gratuite</strong>
+          <span>Sans engagement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROBLEM ===== -->
+<section id="problem">
+  <div class="container">
+    <div class="problem-content">
+      <div class="problem-visual reveal">
+        <div class="problem-emoji">😔</div>
+        <h3>Vous vous reconnaissez ?</h3>
+        <p>Des millions de personnes vivent avec un sourire qui les rend mal à l'aise au quotidien.</p>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="section-tag">Le Problème</div>
+        <h2 class="section-title" style="text-align:left;margin-bottom:24px;">
+          Un sourire imparfait peut tout<br><span>changer dans votre vie</span>
+        </h2>
+
+        <div class="pain-points">
+          <div class="pain-point">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>Vous évitez de sourire sur les photos par honte de vos dents</p>
+          </div>
+          <div class="pain-point">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>Vos dents jaunies ou tachées vous complexent en société</p>
+          </div>
+          <div class="pain-point">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>Vous perdez confiance lors d'entretiens ou de rendez-vous importants</p>
+          </div>
+          <div class="pain-point">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>Les espaces entre vos dents vous gênent et affectent votre estime de vous</p>
+          </div>
+          <div class="pain-point">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <p>Vous pensez que les solutions coûtent une fortune et prennent des mois</p>
+          </div>
+        </div>
+
+        <div class="solution-bridge">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <div>
+            <strong>La bonne nouvelle ? Il existe une solution accessible.</strong>
+            <span>Les facettes composites Denti Luxe transforment votre sourire en 1 séance dès 1 500 DH.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OFFERS ===== -->
+<section id="offres">
+  <div class="container">
+    <div class="section-tag">Nos Offres</div>
+    <h2 class="section-title">
+      Choisissez votre<br><span>transformation</span>
+    </h2>
+    <p class="section-subtitle">
+      Trois formules pensées pour chaque besoin et chaque budget. Consultation gratuite incluse dans chaque offre.
+    </p>
+
+    <div class="offers-grid">
+
+      <!-- Pack Essentiel -->
+      <div class="offer-card reveal">
+        <div class="offer-icon navy">😬</div>
+        <div class="offer-title">Pack Essentiel</div>
+        <div class="offer-subtitle">Les dents du sourire</div>
+        <div class="offer-price-box">
+          <div class="offer-price">1 500 <span>DH</span></div>
+          <div class="offer-price-per">8 facettes composites</div>
+        </div>
+        <ul class="offer-features">
+          <li><i class="fa-solid fa-check-circle"></i> 8 facettes composites premium</li>
+          <li><i class="fa-solid fa-check-circle"></i> Consultation + diagnostic gratuit</li>
+          <li><i class="fa-solid fa-check-circle"></i> Design sourire personnalisé</li>
+          <li><i class="fa-solid fa-check-circle"></i> Application en 1 séance (2–3h)</li>
+          <li><i class="fa-solid fa-check-circle"></i> Polissage professionnel inclus</li>
+          <li><i class="fa-solid fa-check-circle"></i> Retouche gratuite à 1 mois</li>
+        </ul>
+        <a class="btn btn-navy offer-cta" data-wa="pack8" href="#">
+          <i class="fa-brands fa-whatsapp"></i> Réserver ce Pack
+        </a>
+      </div>
+
+      <!-- Pack Premium -->
+      <div class="offer-card popular reveal reveal-delay-1">
+        <div class="offer-badge-popular">⭐ Le Plus Populaire</div>
+        <div class="ribbon">BESTSELLER</div>
+        <div class="offer-icon gold">😁</div>
+        <div class="offer-title">Pack Premium</div>
+        <div class="offer-subtitle">Sourire complet & harmonieux</div>
+        <div class="offer-price-box">
+          <div class="offer-price">2 500 <span>DH</span></div>
+          <div class="offer-price-per">16 facettes composites</div>
+        </div>
+        <ul class="offer-features">
+          <li><i class="fa-solid fa-check-circle"></i> 16 facettes composites premium</li>
+          <li><i class="fa-solid fa-check-circle"></i> Consultation + diagnostic gratuit</li>
+          <li><i class="fa-solid fa-check-circle"></i> Simulation sourire digitale</li>
+          <li><i class="fa-solid fa-check-circle"></i> Application en 1 séance (3–4h)</li>
+          <li><i class="fa-solid fa-check-circle"></i> Polissage + finition ultra</li>
+          <li><i class="fa-solid fa-check-circle"></i> 2 retouches gratuites</li>
+          <li><i class="fa-solid fa-check-circle"></i> Kit entretien offert</li>
+        </ul>
+        <a class="btn btn-gold offer-cta" data-wa="pack16" href="#">
+          <i class="fa-brands fa-whatsapp"></i> Réserver ce Pack
+        </a>
+      </div>
+
+      <!-- Pack Complet -->
+      <div class="offer-card reveal reveal-delay-2">
+        <div class="offer-icon navy">🌟</div>
+        <div class="offer-title">Pack Complet</div>
+        <div class="offer-subtitle">La transformation totale</div>
+        <div class="offer-price-box">
+          <div class="offer-price">3 000 <span>DH</span></div>
+          <div class="offer-price-per">20 facettes composites</div>
+        </div>
+        <ul class="offer-features">
+          <li><i class="fa-solid fa-check-circle"></i> 20 facettes composites premium</li>
+          <li><i class="fa-solid fa-check-circle"></i> Consultation + diagnostic gratuit</li>
+          <li><i class="fa-solid fa-check-circle"></i> Simulation sourire digitale HD</li>
+          <li><i class="fa-solid fa-check-circle"></i> Application en 1 séance (4–5h)</li>
+          <li><i class="fa-solid fa-check-circle"></i> Polissage + finition luxe</li>
+          <li><i class="fa-solid fa-check-circle"></i> 3 retouches gratuites</li>
+          <li><i class="fa-solid fa-check-circle"></i> Kit entretien premium offert</li>
+          <li><i class="fa-solid fa-check-circle"></i> Blanchiment offert</li>
+        </ul>
+        <a class="btn btn-navy offer-cta" data-wa="pack20" href="#">
+          <i class="fa-brands fa-whatsapp"></i> Réserver ce Pack
+        </a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <p style="color:var(--gray-600);font-size:.9rem;margin-bottom:16px;">
+        💬 Pas sûr(e) de quelle offre vous convient le mieux ?
+      </p>
+      <a class="btn btn-whatsapp" data-wa="general" href="#">
+        <i class="fa-brands fa-whatsapp"></i> Parlez à notre Expert — C'est Gratuit
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY DENTI LUXE ===== -->
+<section id="pourquoi">
+  <div class="container" style="text-align:center;">
+    <div class="section-tag">Pourquoi Nous Choisir</div>
+    <h2 class="section-title">Ce qui rend Denti Luxe <span>unique</span></h2>
+    <p class="section-subtitle">
+      Nous ne sommes pas juste un cabinet dentaire. Nous sommes des artisans du sourire qui combinent technique de pointe et esthétique premium.
+    </p>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+        <h3>Résultat en 1 Séance</h3>
+        <p>Contrairement aux facettes en porcelaine qui nécessitent plusieurs rendez-vous, nos facettes composites sont réalisées en une seule visite de 2 à 5 heures.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-palette"></i></div>
+        <h3>Personnalisation Totale</h3>
+        <p>Chaque sourire est unique. Nous adaptons la forme, la taille et la couleur des facettes à votre morphologie pour un résultat 100% naturel.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-gem"></i></div>
+        <h3>Matériaux Premium</h3>
+        <p>Nous utilisons exclusivement des résines composites de dernière génération, biocompatibles et résistantes, pour une longévité maximale.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-tag"></i></div>
+        <h3>Prix Accessibles</h3>
+        <p>Un sourire de star ne devrait pas coûter une fortune. Nos tarifs sont étudiés pour rendre la transformation accessible à tous les budgets.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-shield-check"></i></div>
+        <h3>Satisfaction Garantie</h3>
+        <p>Si vous n'êtes pas satisfait(e) du résultat, nous effectuons une retouche gratuite. Votre bonheur est notre priorité absolue.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+        <h3>Suivi WhatsApp</h3>
+        <p>Un accompagnement personnalisé avant, pendant et après votre traitement. Notre équipe est disponible 7j/7 via WhatsApp pour répondre à toutes vos questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="processus">
+  <div class="container">
+    <div class="section-tag">Comment ça Marche</div>
+    <h2 class="section-title">Votre sourire en <span>4 étapes simples</span></h2>
+    <p class="section-subtitle">
+      Un processus clair, transparent et conçu pour votre confort à chaque instant.
+    </p>
+
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-number">1</div>
+        <h3>Consultation Gratuite</h3>
+        <p>Contactez-nous via WhatsApp ou formulaire. Nous analysons votre sourire et vous proposons la solution idéale — sans engagement.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">2</div>
+        <h3>Design de Sourire</h3>
+        <p>Notre praticien crée une simulation de votre futur sourire. Vous visualisez le résultat avant même de commencer.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">3</div>
+        <h3>Application en 1 Séance</h3>
+        <p>Le jour J, nos spécialistes posent vos facettes composites avec précision. Confort maximal, résultat spectaculaire.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-number">4</div>
+        <h3>Révélez votre Sourire</h3>
+        <p>Vous repartez le même jour avec votre nouveau sourire. Suivi WhatsApp inclus pour les semaines suivantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BEFORE/AFTER ===== -->
+<section id="avant-apres">
+  <div class="container">
+    <div class="section-tag">Transformations Réelles</div>
+    <h2 class="section-title">Avant & <span>Après</span></h2>
+    <p class="section-subtitle">
+      Des résultats réels, obtenus en 1 seule séance. Chaque sourire raconte une histoire de confiance retrouvée.
+    </p>
+
+    <div class="transformation-grid">
+      <div class="transformation-card reveal">
+        <div class="ba-image">
+          <div class="ba-before">
+            <div class="ba-emoji">😬</div>
+            <div class="ba-label">Avant</div>
+          </div>
+          <div class="ba-after">
+            <div class="ba-emoji">😁</div>
+            <div class="ba-label">Après</div>
+          </div>
+          <div class="ba-divider">➜</div>
+        </div>
+        <div class="ba-info">
+          <h4>Sanaa, 28 ans — Casablanca</h4>
+          <p>"Je n'osais plus sourire sur les photos. Aujourd'hui c'est mon atout !"</p>
+          <div class="ba-offer">Pack Premium — 16 facettes</div>
         </div>
       </div>
 
-      <!-- Onglet : Résumé -->
-      <div id="tab-summary" class="tab-content card hidden">
-        <h2>Résumé du fichier</h2>
-        <div id="summary-container"></div>
+      <div class="transformation-card reveal reveal-delay-1">
+        <div class="ba-image">
+          <div class="ba-before">
+            <div class="ba-emoji">😟</div>
+            <div class="ba-label">Avant</div>
+          </div>
+          <div class="ba-after">
+            <div class="ba-emoji">🤩</div>
+            <div class="ba-label">Après</div>
+          </div>
+          <div class="ba-divider">➜</div>
+        </div>
+        <div class="ba-info">
+          <h4>Youssef, 34 ans — Rabat</h4>
+          <p>"Résultat incroyable en une seule séance. Vraiment professionnel."</p>
+          <div class="ba-offer">Pack Complet — 20 facettes</div>
+        </div>
       </div>
-    </section>
 
-    <!-- Toast notifications -->
-    <div id="toast-container"></div>
-  </main>
+      <div class="transformation-card reveal reveal-delay-2">
+        <div class="ba-image">
+          <div class="ba-before">
+            <div class="ba-emoji">🙁</div>
+            <div class="ba-label">Avant</div>
+          </div>
+          <div class="ba-after">
+            <div class="ba-emoji">😍</div>
+            <div class="ba-label">Après</div>
+          </div>
+          <div class="ba-divider">➜</div>
+        </div>
+        <div class="ba-info">
+          <h4>Fatima, 24 ans — Marrakech</h4>
+          <p>"Exactement ce que je voulais ! Les dents sont naturelles et lumineuses."</p>
+          <div class="ba-offer">Pack Essentiel — 8 facettes</div>
+        </div>
+      </div>
+    </div>
 
-  <footer>
-    <p>Denti-Luxe &copy; 2024 — Outil professionnel pour laboratoires dentaires</p>
-  </footer>
+    <div style="text-align:center;margin-top:40px;">
+      <a class="btn btn-navy btn-lg" data-wa="rdv" href="#">
+        <i class="fa-brands fa-whatsapp"></i> Je veux ma transformation
+      </a>
+    </div>
+  </div>
+</section>
 
-  <script src="js/parser.js"></script>
-  <script src="js/editor.js"></script>
-  <script src="js/app.js"></script>
+<!-- ===== TESTIMONIALS ===== -->
+<section id="temoignages">
+  <div class="container">
+    <div class="section-tag">Témoignages</div>
+    <h2 class="section-title">Ce que disent nos <span>patients</span></h2>
+    <p class="section-subtitle">
+      Plus de 500 familles marocaines ont déjà transformé leur sourire avec Denti Luxe.
+    </p>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div class="reviewer-name">Sanaa Bensaid</div>
+            <div class="reviewer-city">📍 Casablanca</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "Je suis venue pour 16 facettes et le résultat est absolument magnifique. L'équipe est professionnelle, douce et à l'écoute. J'avais peur de la douleur mais j'ai ressenti à peine quelque chose. Mon sourire a totalement changé ma façon de me présenter au travail !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Premium — 16 facettes</div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">Y</div>
+          <div>
+            <div class="reviewer-name">Youssef Alami</div>
+            <div class="reviewer-city">📍 Rabat</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "Honnêtement je ne m'attendais pas à un tel résultat. En 1 séance, mes dents sont passées de jaunies et irrégulières à parfaitement blanches et alignées. Le rapport qualité/prix est imbattable. Je recommande à 100% !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Complet — 20 facettes</div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">F</div>
+          <div>
+            <div class="reviewer-name">Fatima Zahra</div>
+            <div class="reviewer-city">📍 Marrakech</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "J'ai longtemps hésité mais je ne regrette absolument pas. Les facettes sont ultra naturelles, personne ne se doute que c'est des facettes. Ma famille, mes amis, tout le monde me demande ce que j'ai fait pour avoir un si beau sourire !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Essentiel — 8 facettes</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">K</div>
+          <div>
+            <div class="reviewer-name">Karim Ouazzani</div>
+            <div class="reviewer-city">📍 Fès</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "Excellent service du début à la fin. La consultation gratuite m'a permis de comprendre exactement ce qu'ils allaient faire. Résultat : 20 facettes posées en une séance de 4 heures. Je suis reparti avec un sourire que je n'aurais jamais cru possible !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Complet — 20 facettes</div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">N</div>
+          <div>
+            <div class="reviewer-name">Nadia Tazi</div>
+            <div class="reviewer-city">📍 Agadir</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "J'avais des dents très espacées qui me complexaient depuis des années. Après les facettes Denti Luxe, c'est de l'histoire ancienne. L'équipe m'a guidée dans le choix de la forme et la couleur. Le résultat est exactement ce que j'avais en tête !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Premium — 16 facettes</div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">M</div>
+          <div>
+            <div class="reviewer-name">Mohamed Karimi</div>
+            <div class="reviewer-city">📍 Tanger</div>
+          </div>
+        </div>
+        <p class="review-text">
+          "Prix compétitif, résultat premium. J'avais fait des devis ailleurs, c'était 3 fois plus cher pour un résultat similaire. Denti Luxe a su combiner l'excellence et l'accessibilité. Mon sourire est devenu mon meilleur atout professionnel !"
+        </p>
+        <div class="review-offer"><i class="fa-solid fa-tooth"></i> Pack Premium — 16 facettes</div>
+      </div>
+    </div>
+
+    <div class="trust-aggregate reveal">
+      <div class="agg-stat">
+        <div class="agg-number" data-count="500" data-suffix="+">0</div>
+        <div class="agg-label">Patients Satisfaits</div>
+      </div>
+      <div class="agg-divider"></div>
+      <div class="agg-stat">
+        <div class="agg-number" data-count="98" data-suffix="%">0</div>
+        <div class="agg-label">Taux de Satisfaction</div>
+      </div>
+      <div class="agg-divider"></div>
+      <div class="agg-stat">
+        <div class="agg-number">5/5</div>
+        <div class="agg-label">Note Moyenne</div>
+      </div>
+      <div class="agg-divider"></div>
+      <div class="agg-stat">
+        <div class="agg-number" data-count="6">0</div>
+        <div class="agg-label">Villes au Maroc</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROMO / URGENCY ===== -->
+<section id="promo">
+  <div class="container">
+    <div class="promo-inner">
+      <div class="promo-tag"><i class="fa-solid fa-fire"></i> Offre Limitée</div>
+      <h2>Profitez de <span class="gold">10% de réduction</span><br>sur votre 1ère commande</h2>
+      <p>Cette offre est valable uniquement pour les nouvelles réservations. Ne la laissez pas expirer !</p>
+
+      <div class="countdown">
+        <div class="countdown-unit">
+          <span class="number" id="cd-hours">00</span>
+          <span class="label">Heures</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="number" id="cd-minutes">00</span>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="number" id="cd-seconds">00</span>
+          <span class="label">Secondes</span>
+        </div>
+      </div>
+
+      <div class="promo-offer-box">
+        <div>
+          <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:4px;">Pack Premium Normal</div>
+          <div class="promo-old-price">2 778 DH</div>
+        </div>
+        <div>
+          <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:4px;">Prix Promotionnel</div>
+          <div class="promo-new-price">2 500 DH</div>
+        </div>
+        <div class="promo-save">Économisez 278 DH !</div>
+      </div>
+
+      <a class="btn btn-gold btn-lg" data-wa="promo" href="#">
+        <i class="fa-brands fa-whatsapp"></i> Profiter de l'Offre Maintenant
+      </a>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.4);margin-top:12px;">
+        <i class="fa-solid fa-lock"></i> Consultation gratuite incluse · Sans engagement
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-sidebar reveal">
+        <div class="section-tag">FAQ</div>
+        <h2>Questions <span style="color:var(--gold);font-style:italic;">Fréquentes</span></h2>
+        <p>Toutes les réponses pour prendre votre décision en toute confiance.</p>
+
+        <div class="faq-contact-box">
+          <h4>Vous avez d'autres questions ?</h4>
+          <p>Notre équipe est disponible 7j/7 pour vous répondre en quelques minutes.</p>
+          <a class="btn btn-whatsapp" data-wa="general" href="#" style="padding:12px 20px;font-size:.9rem;">
+            <i class="fa-brands fa-whatsapp"></i> Poser une Question
+          </a>
+        </div>
+      </div>
+
+      <div class="faq-list reveal reveal-delay-1">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Qu'est-ce qu'une facette composite et comment ça marche ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>Une facette composite est une fine couche de résine composite appliquée directement sur la surface visible de votre dent. Contrairement aux facettes en porcelaine qui nécessitent un laboratoire, les facettes composites sont sculptées à la main par notre praticien en une seule séance. Résultat : un sourire naturel et esthétique sans délai.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Est-ce que c'est douloureux ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>La pose de facettes composites est généralement indolore car elle n'implique pas de meulage important de la dent. Dans la grande majorité des cas, aucune anesthésie n'est nécessaire. Nos patients décrivent souvent la procédure comme confortable. Si vous avez une sensibilité particulière, notre praticien peut appliquer un gel anesthésique topique.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Combien de temps durent les facettes composites ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>Avec un bon entretien, les facettes composites durent entre 3 et 7 ans. Leur longévité dépend de votre hygiène bucco-dentaire, de vos habitudes alimentaires (éviter de mordre dans des aliments très durs) et des retouches régulières. L'avantage est qu'elles sont facilement réparables ou renouvelables si nécessaire.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Combien de temps dure la séance ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>La durée dépend du nombre de facettes : Pack Essentiel (8 facettes) = 2 à 3 heures. Pack Premium (16 facettes) = 3 à 4 heures. Pack Complet (20 facettes) = 4 à 5 heures. Vous repartez le même jour avec votre nouveau sourire !</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Puis-je voir le résultat avant de me décider ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>Absolument ! Lors de votre consultation gratuite, notre praticien réalise une simulation de sourire (smile design) pour vous montrer le résultat final attendu. Vous pouvez ainsi valider ou ajuster la forme, la taille et la couleur avant toute intervention. Votre accord est indispensable avant de commencer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Comment entretenir mes facettes composites ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>L'entretien est simple : brossage 2 à 3 fois par jour avec une brosse souple, utilisation du fil dentaire quotidiennement, éviter de mordre dans des objets durs (bouchons, stylos), limiter les aliments très colorants (café, thé, tabac). Un polissage de maintenance tous les 6 à 12 mois est recommandé pour maintenir l'éclat.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Est-ce que mes vraies dents sont abîmées ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>C'est l'un des grands avantages des facettes composites : elles nécessitent un meulage minimal ou nul de la dent naturelle. Dans la plupart des cas, la structure dentaire originale est préservée à 95–100%. C'est une technique bien moins invasive que les couronnes ou les facettes en céramique.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Quelle est la différence entre facettes composites et facettes en porcelaine ?</h3>
+            <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+          </div>
+          <div class="faq-answer">
+            <p>Les facettes composites sont réalisées en 1 séance, moins chères, facilement réparables mais légèrement moins résistantes aux taches (3–7 ans). Les facettes en porcelaine nécessitent 2–3 semaines, coûtent 3 à 5× plus cher, sont plus résistantes aux taches mais irréversibles (10–15 ans). Pour la majorité des patients, les composites offrent le meilleur rapport qualité/prix/résultat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEAD FORM ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="section-tag">Consultation Gratuite</div>
+    <h2 class="section-title">Commencez votre<br><span>transformation aujourd'hui</span></h2>
+    <p class="section-subtitle">
+      Remplissez le formulaire et nous vous contactons via WhatsApp dans les 30 minutes pour planifier votre consultation gratuite.
+    </p>
+
+    <div class="contact-form-box">
+      <form id="lead-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name"><i class="fa-solid fa-user"></i> Votre Prénom</label>
+            <input type="text" id="name" name="name" placeholder="Ex: Fatima" required>
+          </div>
+          <div class="form-group">
+            <label for="phone"><i class="fa-solid fa-phone"></i> Votre Téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="offer"><i class="fa-solid fa-tooth"></i> Offre qui vous intéresse</label>
+          <select id="offer" name="offer">
+            <option value="">— Choisissez votre pack —</option>
+            <option value="Pack Essentiel — 8 facettes à 1 500 DH">Pack Essentiel — 8 facettes (1 500 DH)</option>
+            <option value="Pack Premium — 16 facettes à 2 500 DH" selected>Pack Premium — 16 facettes (2 500 DH) ⭐</option>
+            <option value="Pack Complet — 20 facettes à 3 000 DH">Pack Complet — 20 facettes (3 000 DH)</option>
+            <option value="Je ne sais pas encore">Je ne sais pas encore — Conseillez-moi</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message"><i class="fa-solid fa-comment"></i> Votre situation (optionnel)</label>
+          <textarea id="message" name="message" rows="3" placeholder="Décrivez ce qui vous gêne dans votre sourire (dents tachées, espaces, irrégularités...)"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-whatsapp btn-lg" style="width:100%;justify-content:center;">
+          <i class="fa-brands fa-whatsapp"></i> Envoyer ma Demande via WhatsApp
+        </button>
+        <p class="form-note"><i class="fa-solid fa-lock"></i> Vos données sont confidentielles. Réponse garantie en moins de 30 minutes.</p>
+      </form>
+
+      <div class="whatsapp-divider">OU</div>
+
+      <a class="btn btn-whatsapp btn-lg" data-wa="rdv" href="#" style="width:100%;justify-content:center;">
+        <i class="fa-brands fa-whatsapp"></i> Contacter Directement sur WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UPSELLS ===== -->
+<section id="upsells">
+  <div class="container">
+    <div class="section-tag">Produits Complémentaires</div>
+    <h2 class="section-title">Complétez votre <span>expérience sourire</span></h2>
+    <p class="section-subtitle">
+      Des soins additionnels pour prolonger et optimiser votre transformation.
+    </p>
+
+    <div class="upsell-grid">
+      <div class="upsell-card reveal">
+        <div class="upsell-icon">✨</div>
+        <h4>Blanchiment LED</h4>
+        <p>Illuminez l'éclat de votre sourire avec notre traitement blanchiment professionnel.</p>
+        <div class="upsell-price">450 DH</div>
+      </div>
+      <div class="upsell-card reveal reveal-delay-1">
+        <div class="upsell-icon">🛡️</div>
+        <h4>Kit Entretien Premium</h4>
+        <p>Dentifrice spécial composites, fil dentaire et brossette — prolongez la durée de vie.</p>
+        <div class="upsell-price">180 DH</div>
+      </div>
+      <div class="upsell-card reveal reveal-delay-2">
+        <div class="upsell-icon">🔄</div>
+        <h4>Polissage Annuel</h4>
+        <p>Maintenez l'éclat de vos facettes avec notre séance de polissage de maintenance.</p>
+        <div class="upsell-price">350 DH</div>
+      </div>
+      <div class="upsell-card reveal reveal-delay-3">
+        <div class="upsell-icon">💎</div>
+        <h4>Détartrage Professionnel</h4>
+        <p>Nettoyage en profondeur avant ou après vos facettes pour des gencives saines.</p>
+        <div class="upsell-price">280 DH</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a class="btn btn-gold" data-wa="general" href="#">
+        <i class="fa-brands fa-whatsapp"></i> Me renseigner sur les compléments
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🦷</div>
+          <div class="logo-text">Denti <span>Luxe</span></div>
+        </div>
+        <p>La référence des facettes composites premium au Maroc. Transformez votre sourire en 1 séance avec des résultats naturels et durables.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Nos Offres</h4>
+        <ul>
+          <li><a href="#offres">Pack Essentiel — 1 500 DH</a></li>
+          <li><a href="#offres">Pack Premium — 2 500 DH</a></li>
+          <li><a href="#offres">Pack Complet — 3 000 DH</a></li>
+          <li><a href="reservation.html">Réserver un RDV</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="#processus">Comment ça marche</a></li>
+          <li><a href="#avant-apres">Avant / Après</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="sequences.html">Guide Séquences</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Nous Contacter</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-brands fa-whatsapp"></i> +212 6 XX XX XX XX</li>
+          <li><i class="fa-solid fa-envelope"></i> contact@dentiluxe.ma</li>
+          <li><i class="fa-solid fa-map-marker-alt"></i> Casablanca, Maroc</li>
+          <li><i class="fa-solid fa-clock"></i> Lun–Sam : 9h00–19h00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Denti Luxe. Tous droits réservés. <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
+      <p>Fait avec ❤️ au <strong style="color:var(--gold);">Maroc</strong></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a id="float-whatsapp" data-wa="rdv" href="#">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="tooltip">Consultation Gratuite 💬</span>
+</a>
+
+<script src="js/main.js"></script>
 </body>
 </html>

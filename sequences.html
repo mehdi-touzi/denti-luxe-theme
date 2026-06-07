@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séquences WhatsApp & Email — Denti Luxe Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--off-white); padding-top: 80px; }
+
+    .guide-hero {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 60px 0 40px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .guide-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--white); }
+    .guide-hero h1 span { color: var(--gold); font-style: italic; }
+    .guide-hero p { font-size: 1rem; color: rgba(255,255,255,.7); margin-top: 12px; }
+
+    .guide-content { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .guide-section { margin-bottom: 60px; }
+    .guide-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--navy); margin-bottom: 6px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+    .guide-section > p { font-size: .9rem; color: var(--gray-600); margin-bottom: 28px; }
+
+    .sequence-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-100);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .seq-header {
+      background: var(--navy);
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .seq-header .seq-num {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700; color: var(--navy);
+      flex-shrink: 0;
+    }
+    .seq-header h3 { font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 600; color: var(--white); flex: 1; }
+    .seq-header .seq-timing { font-size: .75rem; color: var(--gold); background: rgba(201,160,51,.15); padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+
+    .seq-body { padding: 20px; }
+
+    .wa-bubble {
+      background: #e9fbe6;
+      border-radius: 12px 12px 12px 4px;
+      padding: 14px 16px;
+      font-size: .88rem;
+      color: #1a1a1a;
+      line-height: 1.7;
+      white-space: pre-line;
+      position: relative;
+      max-width: 90%;
+      margin-bottom: 12px;
+      font-family: -apple-system, sans-serif;
+    }
+    .wa-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: -8px;
+      width: 0; height: 0;
+      border: 8px solid transparent;
+      border-right-color: #e9fbe6;
+      border-bottom: 0;
+    }
+
+    .email-preview {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .email-preview .email-meta { background: var(--gray-100); padding: 12px 16px; font-size: .82rem; color: var(--gray-600); }
+    .email-preview .email-meta strong { color: var(--navy); }
+    .email-preview .email-body { padding: 20px; font-size: .9rem; line-height: 1.7; color: var(--gray-800); white-space: pre-line; }
+
+    .tip-box {
+      background: linear-gradient(135deg, rgba(201,160,51,.1), rgba(201,160,51,.05));
+      border: 1px solid rgba(201,160,51,.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex; gap: 12px; align-items: flex-start;
+      margin: 16px 0;
+    }
+    .tip-box i { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .tip-box p { font-size: .88rem; color: var(--gray-800); line-height: 1.6; margin: 0; }
+
+    .offer-ideas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .offer-idea {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .offer-idea h4 { font-size: .95rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .offer-idea p { font-size: .85rem; color: var(--gray-600); line-height: 1.6; }
+    .offer-idea .tag { display: inline-block; background: var(--gold-pale); color: var(--gold-dark); font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-bottom: 10px; }
+
+    .upsell-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .upsell-table th { background: var(--navy); color: var(--white); padding: 12px 16px; text-align: left; }
+    .upsell-table td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); color: var(--gray-800); }
+    .upsell-table tr:hover td { background: var(--off-white); }
+    .upsell-table .price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🦷</div>
+      <div class="logo-text">Denti <span>Luxe</span></div>
+    </a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="reservation.html">Réserver</a>
+    </nav>
+    <div></div>
+  </div>
+</header>
+
+<div class="guide-hero">
+  <div class="container">
+    <div class="section-tag">Guide Complet</div>
+    <h1>Séquences <span>WhatsApp & Email</span></h1>
+    <p>Tous les messages automatiques, offres promotionnelles, upsells et stratégies de conversion pour Denti Luxe.</p>
+  </div>
+</div>
+
+<div class="guide-content">
+
+  <!-- ===== SECTION 1: WhatsApp Sequences ===== -->
+  <div class="guide-section">
+    <h2><i class="fa-brands fa-whatsapp" style="color:#25D366;margin-right:8px;"></i> Séquences WhatsApp Automatiques</h2>
+    <p>Ces messages sont envoyés via WhatsApp Business ou ManyChat/Wati selon votre outil. Personnalisez les variables entre [crochets].</p>
+
+    <!-- Message 1 -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">1</div>
+        <h3>Message de Bienvenue — Immédiatement après la demande</h3>
+        <div class="seq-timing">⚡ J+0 — Immédiat</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] 👋
+
+Merci de votre intérêt pour Denti Luxe ! 🦷✨
+
+Je suis [Nom], votre conseiller(ère) sourire chez Denti Luxe.
+
+Votre demande concernant *[offre choisie]* a bien été reçue.
+
+Pour vous aider au mieux, j'ai une petite question : qu'est-ce qui vous gêne le plus dans votre sourire actuellement ? 😊
+
+1️⃣ La couleur (dents jaunies)
+2️⃣ La forme (irrégulières)
+3️⃣ Les espaces entre les dents
+4️⃣ Plusieurs de ces éléments
+
+Répondez simplement avec le chiffre !</div>
+
+        <div class="tip-box">
+          <i class="fa-solid fa-lightbulb"></i>
+          <p><strong>Stratégie :</strong> Ce message de qualification permet de personnaliser la suite de la conversation ET crée un engagement immédiat. Taux de réponse attendu : 60–75%.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message 2 -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">2</div>
+        <h3>Suivi de Qualification — Selon la réponse</h3>
+        <div class="seq-timing">⏰ J+0 — Après réponse</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Parfait [Prénom] ! 🎯
+
+C'est exactement le type de problème que nous traitons tous les jours avec des résultats spectaculaires.
+
+Voici ce que nous vous proposons :
+
+✅ Une *consultation gratuite* de 30 min
+✅ Une *simulation de votre futur sourire* en direct
+✅ Un *devis personnalisé et transparent*
+✅ Zéro engagement de votre part
+
+📅 Nos prochains créneaux disponibles cette semaine :
+• Mardi [date] à 10h, 14h ou 17h
+• Jeudi [date] à 11h, 15h ou 18h
+• Samedi [date] à 10h ou 13h
+
+Lequel vous convient le mieux ?</div>
+      </div>
+    </div>
+
+    <!-- Message 3 -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">3</div>
+        <h3>Confirmation de RDV</h3>
+        <div class="seq-timing">📅 Après confirmation du créneau</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">C'est confirmé [Prénom] ! 🎉
+
+Votre consultation gratuite est réservée :
+
+📅 *Date :* [Jour] [date]
+🕐 *Heure :* [heure]
+📍 *Adresse :* [Adresse cabinet]
+
+📌 *Ce que vous pouvez apporter :*
+• Des photos de sourires qui vous inspirent (Pinterest, Instagram...)
+• Vos questions ou préoccupations notées
+
+❓ *Pour préparer votre visite, quel est votre objectif principal ?*
+Ex: "Je veux un sourire plus blanc et régulier pour mon mariage dans 2 mois"
+
+À très bientôt ! 🦷✨
+*L'équipe Denti Luxe*</div>
+      </div>
+    </div>
+
+    <!-- Message 4 - Reminder -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">4</div>
+        <h3>Rappel RDV — 24h avant</h3>
+        <div class="seq-timing">⏰ J-1 avant RDV</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] 👋
+
+Petit rappel amical : votre consultation chez Denti Luxe est *demain* ! 😁
+
+📅 *[Jour] à [heure]*
+📍 *[Adresse]*
+
+🚗 Parking disponible devant le cabinet.
+
+💡 *Conseil :* Venez avec un sourire naturel — pas besoin de vous préparer spécialement !
+
+Si vous avez des questions ou besoin de modifier le créneau, écrivez-moi ici.
+
+À demain ! 🦷
+*[Votre Prénom], Équipe Denti Luxe*</div>
+      </div>
+    </div>
+
+    <!-- Message 5 - Post consultation -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">5</div>
+        <h3>Suivi Post-Consultation (non-convertis)</h3>
+        <div class="seq-timing">⏰ J+2 après la consultation</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] ! 😊
+
+J'espère que votre consultation s'est bien passée et que vous avez eu toutes les informations dont vous aviez besoin.
+
+Je voulais juste vous confirmer que :
+✅ Votre simulation de sourire est prête
+✅ Votre devis personnalisé est valable 30 jours
+✅ Les créneaux du mois sont presque complets
+
+Avez-vous des questions supplémentaires sur lesquelles je peux vous aider ?
+
+Votre sourire de rêve est à portée de main ! 🦷✨</div>
+
+        <div class="tip-box">
+          <i class="fa-solid fa-lightbulb"></i>
+          <p><strong>Objectif :</strong> Relancer doucement les leads chauds qui ont consulté mais n'ont pas encore confirmé leur traitement. Ne pas être agressif commercialement.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message 6 - After treatment -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">6</div>
+        <h3>Suivi Post-Traitement — J+1</h3>
+        <div class="seq-timing">⏰ J+1 après les facettes</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] ! 🌟
+
+J'espère que vous profitez bien de votre nouveau sourire ! 😁
+
+Comment vous sentez-vous aujourd'hui ? Des sensibilités ou questions particulières ?
+
+*Petits rappels d'entretien :*
+🦷 Brossage doux 3x/jour
+🧵 Fil dentaire quotidien
+🥤 Évitez café/thé pendant 48h
+🚫 Pas d'aliments durs (croûtes, noix...)
+
+N'hésitez pas à m'envoyer une photo de votre nouveau sourire — on adorerait la voir ! 📸
+
+*L'équipe Denti Luxe* ❤️</div>
+      </div>
+    </div>
+
+    <!-- Message 7 - Review request -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">7</div>
+        <h3>Demande d'Avis — J+7</h3>
+        <div class="seq-timing">⏰ J+7 après les facettes</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] ! 😊
+
+Une semaine déjà depuis votre transformation ! Comment ça se passe ?
+
+Nous adorerions avoir votre retour d'expérience — ça nous aide énormément à améliorer notre service et à rassurer les futurs patients.
+
+Si vous êtes satisfait(e), pourriez-vous nous laisser 2 minutes pour :
+
+⭐ Un petit témoignage WhatsApp (photo + quelques mots)
+👥 En parler à vos amis et famille
+
+Et si vous connaissez quelqu'un qui rêve d'un beau sourire, nous avons un *programme de parrainage* : 200 DH de réduction pour vous et votre filleul ! 🎁
+
+Merci d'avance [Prénom] ! Vous êtes notre meilleure pub ! 🦷✨</div>
+
+        <div class="tip-box">
+          <i class="fa-solid fa-lightbulb"></i>
+          <p><strong>Programme de parrainage :</strong> Mettre en place un système de référral où chaque patient qui amène un ami reçoit 150–200 DH de réduction sur son prochain soin (polissage, retouche, etc.). Excellent levier de croissance organique.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message 8 - Upsell -->
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">8</div>
+        <h3>Upsell — Blanchiment ou Polissage</h3>
+        <div class="seq-timing">⏰ J+30 après les facettes</div>
+      </div>
+      <div class="seq-body">
+        <div class="wa-bubble">Bonjour [Prénom] ! 🦷
+
+Un mois déjà depuis votre transformation Denti Luxe ! Votre sourire vous plaît toujours ? 😁
+
+Ce mois-ci, nous avons une offre exclusive pour nos patients :
+
+✨ *Séance Blanchiment LED — 450 DH → 350 DH*
+(réservée à nos anciens patients jusqu'au [date])
+
+C'est le complément parfait pour faire briller encore plus vos facettes et avoir un sourire 100% lumineux.
+
+Intéressé(e) ? Répondez *OUI* pour réserver votre créneau ! 🌟</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: Email Sequences ===== -->
+  <div class="guide-section">
+    <h2><i class="fa-solid fa-envelope" style="color:var(--navy);margin-right:8px;"></i> Séquences Email Automatiques</h2>
+    <p>À mettre en place via Mailchimp, Brevo (ex-Sendinblue) ou Klaviyo. Déclencher ces emails si vous collectez des emails via le formulaire du site.</p>
+
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">1</div>
+        <h3>Email de Bienvenue</h3>
+        <div class="seq-timing">⚡ Immédiat après inscription</div>
+      </div>
+      <div class="seq-body">
+        <div class="email-preview">
+          <div class="email-meta">
+            <strong>Objet :</strong> 🦷 Bienvenue chez Denti Luxe — Votre consultation gratuite vous attend<br>
+            <strong>De :</strong> contact@dentiluxe.ma | <strong>Expéditeur :</strong> L'équipe Denti Luxe
+          </div>
+          <div class="email-body">Bonjour [Prénom],
+
+Bienvenue dans la famille Denti Luxe ! 🦷✨
+
+Vous avez fait le premier pas vers le sourire que vous méritez. Nous sommes là pour vous accompagner à chaque étape.
+
+━━━━━━━━━━━━━━━━
+🎁 VOTRE CONSULTATION GRATUITE
+━━━━━━━━━━━━━━━━
+
+Dans les prochaines 24 heures, un membre de notre équipe vous contactera sur WhatsApp pour planifier votre consultation gratuite.
+
+En attendant, voici ce à quoi vous pouvez vous attendre :
+
+✅ Analyse personnalisée de votre sourire
+✅ Simulation digitale de votre résultat final
+✅ Devis transparent et détaillé
+✅ Réponses à toutes vos questions
+
+━━━━━━━━━━━━━━━━
+📸 INSPIREZ-VOUS
+━━━━━━━━━━━━━━━━
+
+En attendant votre RDV, nous vous encourageons à :
+• Sauvegarder des photos de sourires qui vous inspirent
+• Noter vos questions et préoccupations
+• Explorer notre galerie avant/après
+
+À très bientôt,
+L'équipe Denti Luxe 🌟</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">2</div>
+        <h3>Email Éducatif — Les facettes composites expliquées</h3>
+        <div class="seq-timing">⏰ J+2</div>
+      </div>
+      <div class="seq-body">
+        <div class="email-preview">
+          <div class="email-meta">
+            <strong>Objet :</strong> Facettes composites vs porcelaine : laquelle choisir ? (la vérité)
+          </div>
+          <div class="email-body">Bonjour [Prénom],
+
+Vous vous demandez peut-être quelle est la différence entre les facettes composites et les facettes en porcelaine. On entend tellement de choses...
+
+Laissez-nous clarifier tout ça pour vous.
+
+📊 COMPARATIF HONNÊTE
+━━━━━━━━━━━━━━━━━━━━
+
+COMPOSITES (Denti Luxe)
+• Prix : 1 500 – 3 000 DH ✅
+• Durée : 1 séance ✅
+• Invasivité : Minimale ✅
+• Réparabilité : Très facile ✅
+• Durée de vie : 3–7 ans ✅
+
+PORCELAINE
+• Prix : 5 000 – 15 000 DH ❌
+• Durée : 3–6 semaines ❌
+• Invasivité : Meulage important ❌
+• Réparabilité : Impossible ❌
+• Durée de vie : 10–15 ans ✅
+
+🔑 Notre verdict : Pour 95% des patients, les facettes composites offrent le meilleur rapport résultat/prix/délai. C'est pourquoi nous nous sommes spécialisés dans cette technique.
+
+La prochaine fois vous verrez votre consultant, posez-lui ces questions pour choisir en toute confiance.
+
+L'équipe Denti Luxe 🦷</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">3</div>
+        <h3>Email de Preuve Sociale</h3>
+        <div class="seq-timing">⏰ J+4</div>
+      </div>
+      <div class="seq-body">
+        <div class="email-preview">
+          <div class="email-meta">
+            <strong>Objet :</strong> 😁 "Je n'osais plus sourire. Aujourd'hui, je ne m'arrête plus." — Sanaa, Casablanca
+          </div>
+          <div class="email-body">Bonjour [Prénom],
+
+Aujourd'hui, on vous laisse la parole à nos patients.
+
+━━━━━━━━━━━━━━━━
+⭐⭐⭐⭐⭐ SANAA, 28 ANS — CASABLANCA
+Pack Premium — 16 facettes
+━━━━━━━━━━━━━━━━
+
+"Avant Denti Luxe, je cachais mon sourire sur toutes les photos. Je mettais ma main devant ma bouche chaque fois que je riais. C'était épuisant.
+
+Après la consultation gratuite, j'étais rassurée. Le Dr m'a montré exactement ce que ça allait donner. Le jour J, j'ai passé 3h30 au cabinet et je suis ressortie avec le sourire que j'avais toujours voulu.
+
+Mon mari ne me reconnaissait plus tellement je souriais ! Je recommande à toutes mes amies."
+
+━━━━━━━━━━━━━━━━
+
+[Prénom], votre histoire pourrait être la prochaine.
+
+Les créneaux de ce mois sont presque complets.
+
+→ [Réserver maintenant - lien]
+
+L'équipe Denti Luxe ❤️</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sequence-card">
+      <div class="seq-header">
+        <div class="seq-num">4</div>
+        <h3>Email d'Urgence / Dernière Chance</h3>
+        <div class="seq-timing">⏰ J+7 (si pas de RDV pris)</div>
+      </div>
+      <div class="seq-body">
+        <div class="email-preview">
+          <div class="email-meta">
+            <strong>Objet :</strong> 🔔 Dernière chance : votre devis gratuit expire dans 48h
+          </div>
+          <div class="email-body">Bonjour [Prénom],
+
+Je ne veux pas vous mettre la pression, mais je dois vous dire quelque chose d'important.
+
+Le devis personnalisé que nous avons préparé pour vous lors de la consultation expire dans *48 heures*.
+
+Après ça, les prix pourraient être différents et les créneaux disponibles se raréfient.
+
+Je me demandais : qu'est-ce qui vous retient ?
+
+❓ Vous avez des doutes sur le résultat ?
+❓ Le budget est un frein ?
+❓ Vous avez besoin d'un avis supplémentaire ?
+
+Répondez simplement à cet email ou écrivez-nous sur WhatsApp. On trouve une solution ensemble.
+
+Votre sourire vous attend. 🦷✨
+
+→ [Réserver avant expiration - lien]
+
+Bien à vous,
+L'équipe Denti Luxe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: Promotional Offers ===== -->
+  <div class="guide-section">
+    <h2><i class="fa-solid fa-tag" style="color:var(--gold);margin-right:8px;"></i> Offres Promotionnelles</h2>
+    <p>Utilisez ces offres de façon stratégique — ne pas en abuser pour maintenir la valeur perçue de la marque.</p>
+
+    <div class="offer-ideas">
+      <div class="offer-idea">
+        <div class="tag">🎁 Offre de Lancement</div>
+        <h4>Consultation + 10% de réduction</h4>
+        <p>Offerte aux 50 premiers patients du mois. Crée de l'urgence et génère rapidement des demandes. À combiner avec un countdown sur la homepage.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">💑 Offre Duo</div>
+        <h4>Vous + Un(e) Ami(e) = -15%</h4>
+        <p>Si deux personnes réservent ensemble, chacune bénéficie de 15% de réduction. Excellent pour la viralité. Ex: mère + fille, amies, couple.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🎂 Anniversaire</div>
+        <h4>-10% pour votre mois d'anniversaire</h4>
+        <p>Collectez les dates d'anniversaire lors de la consultation et envoyez une offre personnalisée 2 semaines avant. Très fort émotionnellement.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">📸 Influenceur</div>
+        <h4>Partenariat contenu</h4>
+        <p>Offrez les facettes gratuitement (ou à prix réduit) à des micro-influenceurs locaux (5k–50k abonnés) en échange de contenu before/after sur Instagram/TikTok.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🌙 Ramadan</div>
+        <h4>Offre Saison Spéciale</h4>
+        <p>Avant l'Aïd, créez une offre "Sourire pour les fêtes". Les Marocains préparent leur apparence pour les célébrations — timing parfait.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">👰 Mariage</div>
+        <h4>Package Mariée</h4>
+        <p>Pack complet 20 facettes + blanchiment + kit entretien à prix forfaitaire attractif. Les mariées sont des clientes à forte valeur et prescriptrice.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">📱 Réseaux Sociaux</div>
+        <h4>Code Promo Exclusif</h4>
+        <p>Diffusez sur Instagram/TikTok un code promo (ex: INSTA10) valable 48h. Crée de l'urgence et est facile à mesurer (attribution canal).</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🔄 Fidélité</div>
+        <h4>Programme de Points</h4>
+        <p>1 DH dépensé = 1 point. 500 points = 1 séance de polissage offerte. Fidélise les patients sur le long terme et encourage les retours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: Upsells ===== -->
+  <div class="guide-section">
+    <h2><i class="fa-solid fa-arrow-trend-up" style="color:var(--navy);margin-right:8px;"></i> Upsells & Cross-Sells</h2>
+    <p>Maximisez le panier moyen avec ces produits et services complémentaires à proposer avant, pendant et après les facettes.</p>
+
+    <div class="tip-box" style="margin-bottom:24px;">
+      <i class="fa-solid fa-lightbulb"></i>
+      <p><strong>Règle d'or :</strong> Proposez l'upsell au moment où le patient est le plus enthousiaste — juste après avoir vu sa simulation sourire, avant qu'il reparte. C'est le moment où la valeur est la plus haute et la résistance la plus basse.</p>
+    </div>
+
+    <table class="upsell-table">
+      <thead>
+        <tr>
+          <th>Produit / Service</th>
+          <th>Moment de la proposition</th>
+          <th>Argument de vente</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Blanchiment LED professionnel</strong></td>
+          <td>Avant les facettes (J-7)</td>
+          <td>"Pour partir sur une base la plus blanche possible et choisir la bonne teinte"</td>
+          <td class="price">450 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Détartrage professionnel</strong></td>
+          <td>Lors de la consultation</td>
+          <td>"Des gencives saines = des facettes qui tiennent mieux et plus longtemps"</td>
+          <td class="price">280 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Kit entretien premium</strong></td>
+          <td>Le jour des facettes</td>
+          <td>"Pour multiplier par 2 la durée de vie de vos facettes"</td>
+          <td class="price">180 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Retouche + polissage annuel</strong></td>
+          <td>J+12 mois (WhatsApp)</td>
+          <td>"Un entretien préventif qui préserve l'éclat et détecte les micro-fissures"</td>
+          <td class="price">350 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Gouttière de protection nocturne</strong></td>
+          <td>Lors de la pose</td>
+          <td>"Idéale si vous grincez des dents la nuit — protège votre investissement"</td>
+          <td class="price">400 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Traitement fluorure</strong></td>
+          <td>Lors de la pose</td>
+          <td>"Renforce l'adhérence et réduit la sensibilité post-traitement"</td>
+          <td class="price">120 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Consultation esthétique niveau 2</strong></td>
+          <td>J+6 mois</td>
+          <td>"On fait le point sur votre sourire et on planifie les prochaines étapes"</td>
+          <td class="price">200 DH</td>
+        </tr>
+        <tr>
+          <td><strong>Dentifrice blancheur premium</strong></td>
+          <td>À la caisse / en ligne</td>
+          <td>"Formulé spécialement pour préserver la brillance des composites"</td>
+          <td class="price">85 DH</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box" style="margin-top:24px;">
+      <i class="fa-solid fa-chart-line"></i>
+      <p><strong>Objectif panier moyen :</strong> Pack de base (1 500 DH) → visez 2 000–2 200 DH avec 1–2 upsells. Pack Premium (2 500 DH) → visez 3 000–3 200 DH. Augmentation de 20–35% du CA sans client supplémentaire.</p>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 5: Complementary Products ===== -->
+  <div class="guide-section">
+    <h2><i class="fa-solid fa-store" style="color:var(--navy);margin-right:8px;"></i> Produits Complémentaires à Développer</h2>
+    <p>Ces produits peuvent être vendus en ligne, en cabinet ou via WhatsApp pour créer une source de revenus passifs.</p>
+
+    <div class="offer-ideas">
+      <div class="offer-idea">
+        <div class="tag">🛒 E-commerce</div>
+        <h4>Box Entretien Mensuelle</h4>
+        <p>Abonnement mensuel 150–200 DH incluant dentifrice composites, fil dentaire spécial, brossette. Revenus récurrents et fidélisation automatique.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🎓 Formation</div>
+        <h4>Guide "Sourire Parfait"</h4>
+        <p>E-book ou mini-cours en ligne sur l'entretien des facettes, les bons gestes, l'alimentation à éviter. Prix : 50–100 DH. Volume = revenus.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🤝 B2B</div>
+        <h4>Forfaits Entreprise</h4>
+        <p>Offrir des soins dentaires esthétiques aux employés comme avantage en nature. Cibler RH de PME, hôtels, compagnies aériennes (personnel en contact client).</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">📸 Contenu</div>
+        <h4>Photoshoot "Sourire"</h4>
+        <p>Partenariat avec photographe : pack facettes + shooting professionnel pour LinkedIn/réseaux sociaux. Prix pack 3 500 DH. Cible les professionnels.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">💄 Beauté</div>
+        <h4>Partenariat Maquillage</h4>
+        <p>Collaboration avec maquilleuses/coachs image : chaque cliente qui fait des facettes reçoit un bon de 15% chez le partenaire. Cross-promotion gagnant-gagnant.</p>
+      </div>
+      <div class="offer-idea">
+        <div class="tag">🌐 Franchise</div>
+        <h4>Modèle de Franchise</h4>
+        <p>À terme : vendre la méthode Denti Luxe (formation, protocole, marketing) à d'autres dentistes marocains. Revenu de formation + royalties.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer id="footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2024 Denti Luxe — Guide Interne. Tous droits réservés.</p>
+      <a href="index.html" class="btn btn-gold" style="padding:10px 20px;font-size:.85rem;">Retour au Site</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
