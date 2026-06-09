@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denti Luxe — Dashboard CEO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">🦷</span>
+        <div>
+          <div class="brand-name">Denti Luxe</div>
+          <div class="brand-sub">Dashboard CEO · Temps réel</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-pill" id="statusPill">
+          <span class="dot"></span> Agents actifs
+        </div>
+        <div class="clock" id="clock"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ── KPI ROW ── -->
+    <section class="kpi-row">
+      <div class="kpi-card kpi-revenue">
+        <div class="kpi-label">Commission 30j</div>
+        <div class="kpi-value" id="kpiCommission">— DH</div>
+        <div class="kpi-sub" id="kpiRevenue">CA total: — DH</div>
+      </div>
+      <div class="kpi-card kpi-roas">
+        <div class="kpi-label">ROAS 30j</div>
+        <div class="kpi-value" id="kpiROAS">—x</div>
+        <div class="kpi-sub" id="kpiSpend">Budget pub: — DH</div>
+      </div>
+      <div class="kpi-card kpi-leads">
+        <div class="kpi-label">Leads aujourd'hui</div>
+        <div class="kpi-value" id="kpiLeadsToday">—</div>
+        <div class="kpi-sub" id="kpiLeadsTotal">Total: —</div>
+      </div>
+      <div class="kpi-card kpi-conversion">
+        <div class="kpi-label">Taux de conversion</div>
+        <div class="kpi-value" id="kpiConversion">—%</div>
+        <div class="kpi-sub" id="kpiTreated">Traités: —</div>
+      </div>
+      <div class="kpi-card kpi-score">
+        <div class="kpi-label">Business Score</div>
+        <div class="kpi-value" id="kpiScore">—</div>
+        <div class="kpi-sub" id="kpiScoreGrade">Grade: —</div>
+      </div>
+    </section>
+
+    <!-- ── PIPELINE + ACTIONS ── -->
+    <section class="grid-2">
+
+      <!-- Pipeline Kanban -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Pipeline Leads</h2>
+          <button class="btn-refresh" onclick="loadDashboard()">↻</button>
+        </div>
+        <div class="pipeline" id="pipeline">
+          <div class="pipeline-col">
+            <div class="pipeline-label new">Nouveaux</div>
+            <div class="pipeline-count" id="pNew">—</div>
+          </div>
+          <div class="pipeline-col">
+            <div class="pipeline-label contacted">Contactés</div>
+            <div class="pipeline-count" id="pContacted">—</div>
+          </div>
+          <div class="pipeline-col">
+            <div class="pipeline-label qualified">Qualifiés</div>
+            <div class="pipeline-count" id="pQualified">—</div>
+          </div>
+          <div class="pipeline-col">
+            <div class="pipeline-label apt">RDV Pris</div>
+            <div class="pipeline-count" id="pApt">—</div>
+          </div>
+          <div class="pipeline-col">
+            <div class="pipeline-label treated">Traités</div>
+            <div class="pipeline-count" id="pTreated">—</div>
+          </div>
+          <div class="pipeline-col">
+            <div class="pipeline-label cold">Froids</div>
+            <div class="pipeline-count" id="pCold">—</div>
+          </div>
+        </div>
+
+        <div class="hot-leads-section">
+          <div class="section-title">🔥 Leads chauds prioritaires</div>
+          <div id="hotLeadsList" class="hot-leads-list"></div>
+        </div>
+      </div>
+
+      <!-- Actions rapides -->
+      <div class="card">
+        <div class="card-header"><h2>Actions rapides</h2></div>
+
+        <div class="action-section">
+          <div class="section-title">Envoyer message manuel</div>
+          <input class="input" type="text" id="msgPhone" placeholder="+212600000000" />
+          <textarea class="textarea" id="msgText" rows="3" placeholder="Votre message..."></textarea>
+          <button class="btn btn-primary" onclick="sendManualMessage()">Envoyer WhatsApp</button>
+        </div>
+
+        <div class="action-section">
+          <div class="section-title">Simuler message entrant</div>
+          <input class="input" type="text" id="simPhone" placeholder="+212600000000" />
+          <input class="input" type="text" id="simMsg" placeholder="Salam bghit n3rf 3la les facettes..." />
+          <button class="btn btn-outline" onclick="simulateMessage()">Simuler</button>
+        </div>
+
+        <div class="action-section">
+          <div class="section-title">Marquer patient traité</div>
+          <input class="input" type="number" id="treatLeadId" placeholder="ID Lead" />
+          <input class="input" type="number" id="treatAmount" placeholder="Montant DH" />
+          <input class="input" type="text" id="treatTreatment" placeholder="Traitement (ex: facettes 8 dents)" />
+          <button class="btn btn-success" onclick="markTreated()">Confirmer traitement</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RAPPORT CEO ── -->
+    <section class="card">
+      <div class="card-header">
+        <h2>Rapport CEO</h2>
+        <button class="btn btn-outline btn-sm" onclick="loadReport()">Générer rapport IA</button>
+      </div>
+      <div id="reportContent" class="report-content">
+        <div class="placeholder">Cliquez sur "Générer rapport IA" pour obtenir l'analyse quotidienne</div>
+      </div>
+    </section>
+
+    <!-- ── CONTENU IA ── -->
+    <section class="card">
+      <div class="card-header">
+        <h2>Génération de contenu</h2>
+      </div>
+      <div class="content-gen">
+        <div class="content-controls">
+          <select class="select" id="contentType">
+            <option value="reel_avant_apres">Reel avant/après</option>
+            <option value="post_educatif">Post éducatif</option>
+            <option value="broadcast_whatsapp">Broadcast WhatsApp</option>
+            <option value="story_sondage">Story sondage</option>
+            <option value="testimonial">Témoignage patient</option>
+            <option value="caption_photo">Légende photo</option>
+          </select>
+          <select class="select" id="contentPlatform">
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="whatsapp">WhatsApp</option>
+          </select>
+          <button class="btn btn-primary" onclick="generateContent()">Générer</button>
+          <button class="btn btn-outline" onclick="generateAdCopy()">Copy pub</button>
+        </div>
+        <div id="contentOutput" class="content-output">
+          <div class="placeholder">Le contenu généré apparaîtra ici...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ALERTES ── -->
+    <section id="alertsSection" class="alerts-section" style="display:none">
+      <div class="card-header"><h2>⚠️ Alertes actives</h2></div>
+      <div id="alertsList"></div>
+    </section>
+
+    <!-- ── AGENTS STATUS ── -->
+    <section class="card">
+      <div class="card-header"><h2>Status des agents IA</h2></div>
+      <div id="agentsList" class="agents-grid"></div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
