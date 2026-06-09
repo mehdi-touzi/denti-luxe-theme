@@ -1,0 +1,20 @@
+# Dépendances
+node_modules/
+
+# Secrets & environnement
+.env
+.env.local
+
+# Base de données SQLite (générée au runtime)
+db/*.db
+db/*.db-shm
+db/*.db-wal
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / éditeurs
+.DS_Store
+.vscode/
+.idea/

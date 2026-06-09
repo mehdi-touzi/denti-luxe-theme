@@ -1,13 +1,9 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm install && npm run migrate"
 
 [deploy]
 startCommand = "npm start"
 healthcheckPath = "/health"
-healthcheckTimeout = 30
+healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
-
-[[services]]
-name = "denti-luxe-bot"

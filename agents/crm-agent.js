@@ -1,9 +1,6 @@
 require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
 const { LeadOps, AppointmentOps, PatientOps, FollowupOps, ConversationOps } = require('../db/database');
 const { sendWhatsAppMessage } = require('./whatsapp-agent');
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ========================================
 // PIPELINE CRM — VUE KANBAN

@@ -1,10 +1,8 @@
 require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
+const { getClient } = require('./claude-client');
 const { LeadOps, ConversationOps, AppointmentOps, FollowupOps } = require('../db/database');
 const { WHATSAPP_SYSTEM_PROMPT } = require('../config/prompts');
 const axios = require('axios');
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const WHATSAPP_API_URL = `https://graph.facebook.com/v18.0/${process.env.WHATSAPP_PHONE_ID}/messages`;
 
@@ -136,7 +134,7 @@ CONTEXTE LEAD ACTUEL :
   let tokensUsed = 0;
 
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 500,
       system: WHATSAPP_SYSTEM_PROMPT + '\n\n' + leadContext + '\n\nRéponds UNIQUEMENT avec un JSON valide.',

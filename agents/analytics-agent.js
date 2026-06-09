@@ -1,9 +1,7 @@
 require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
+const { getClient } = require('./claude-client');
 const { AnalyticsOps, LeadOps, PatientOps } = require('../db/database');
 const { ANALYTICS_SYSTEM_PROMPT, CEO_SYSTEM_PROMPT } = require('../config/prompts');
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ========================================
 // RAPPORT QUOTIDIEN CEO
@@ -45,7 +43,7 @@ ${trend.slice(0, 3).map(m => `${m.month}: ${m.patients} patients, ${m.revenue?.t
 `;
 
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       system: CEO_SYSTEM_PROMPT,
@@ -129,7 +127,7 @@ async function checkAlerts() {
 // ========================================
 async function analyzeCampaignPerformance(campaignData) {
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 800,
       system: ANALYTICS_SYSTEM_PROMPT,

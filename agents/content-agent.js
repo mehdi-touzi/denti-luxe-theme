@@ -1,9 +1,7 @@
 require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
+const { getClient } = require('./claude-client');
 const { getDb } = require('../db/database');
 const { CONTENT_SYSTEM_PROMPT } = require('../config/prompts');
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ========================================
 // GÉNÉRATION DE CONTENU
@@ -44,7 +42,7 @@ async function generateContent(type, platform, context = {}) {
   const prompt = prompts[type] || `Génère du contenu ${type} pour ${platform} pour Denti Luxe Maroc.`;
 
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 800,
       system: CONTENT_SYSTEM_PROMPT,
@@ -130,7 +128,7 @@ async function generateAdCopy(variant = 1) {
   };
 
   try {
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 400,
       system: CONTENT_SYSTEM_PROMPT,
