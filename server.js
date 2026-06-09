@@ -32,13 +32,40 @@ app.use((req, res, next) => {
 });
 
 // ========================================
-// ROUTES STATIQUES — Dashboard
+// ROUTES STATIQUES — Dashboard & Landing Page
 // ========================================
 app.use('/dashboard', express.static(path.join(__dirname, 'dashboard')));
+app.use('/landing', express.static(path.join(__dirname, 'landing')));
 
-// Page d'accueil redirige vers dashboard
+// Page d'accueil = landing page publique
 app.get('/', (req, res) => {
-  res.redirect('/dashboard');
+  res.sendFile(path.join(__dirname, 'landing', 'index.html'));
+});
+
+// Endpoint public pour la landing page (sans auth)
+app.post('/api/leads/public', rateLimit({ windowMs: 60000, max: 10 }), async (req, res) => {
+  try {
+    const { phone, name, source, utm_campaign, utm_content, language, treatment_interest, city } = req.body;
+    if (!phone) return res.status(400).json({ error: 'Téléphone requis' });
+
+    const { LeadOps, FollowupOps } = require('./db/database');
+    let lead = LeadOps.findByPhone(phone);
+
+    if (!lead) {
+      lead = LeadOps.create({ phone, name, source: source || 'landing_page', utm_campaign, utm_content, language: language || 'mixed', treatment_interest, city, meta_lead_id: null });
+      FollowupOps.schedule(lead.id, 'day1', 1);
+      FollowupOps.schedule(lead.id, 'day3', 3);
+      FollowupOps.schedule(lead.id, 'day7', 7);
+
+      // Message de bienvenue immédiat via WhatsApp
+      const { processInboundMessage } = require('./agents/whatsapp-agent');
+      processInboundMessage(phone, `[LANDING_PAGE] ${name || ''} - ${treatment_interest || 'intérêt général'} - ${city || ''}`, null).catch(() => {});
+    }
+
+    res.json({ success: true, leadId: lead.id });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // ========================================
