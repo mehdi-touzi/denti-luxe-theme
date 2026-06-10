@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denti Luxe — Transformez votre sourire au Maroc</title>
+  <meta name="description" content="Facettes dentaires composites au Maroc. Résultats immédiats, 1 seule séance. Consultation gratuite." />
+
+  <!-- Open Graph pour les pubs Meta -->
+  <meta property="og:title" content="Denti Luxe — Smile Transformation" />
+  <meta property="og:description" content="Facettes composites à partir de 400 DH/dent. 1 séance. Résultat immédiat." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a227;
+      --dark: #0a0b0f;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --light: #f9fafb;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+      background: radial-gradient(ellipse at top, #1a1208 0%, var(--dark) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,162,39,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,162,39,.12);
+      border: 1px solid rgba(201,162,39,.3);
+      color: var(--gold);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: .03em;
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    h1 span { color: var(--gold); }
+
+    .subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: rgba(255,255,255,.7);
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat { text-align: center; }
+    .stat-number { font-size: 28px; font-weight: 800; color: var(--gold); }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .05em; }
+
+    /* FORM */
+    .form-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 420px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+    .form-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .form-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 6px; font-weight: 500; }
+    .field input, .field select {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      color: white;
+      padding: 12px 16px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+      font-family: inherit;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--gold);
+      background: rgba(201,162,39,.06);
+    }
+    .field input::placeholder { color: rgba(255,255,255,.3); }
+    .field select option { background: #1a1208; color: white; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #0a0b0f;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+      font-family: inherit;
+      letter-spacing: .02em;
+    }
+    .btn-submit:hover { background: #e8c55b; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .privacy {
+      font-size: 11px;
+      color: rgba(255,255,255,.3);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* SUCCÈS */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-icon { font-size: 56px; margin-bottom: 16px; }
+    .success-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--gold); }
+    .success-text { color: rgba(255,255,255,.6); font-size: 14px; margin-bottom: 24px; }
+    .wa-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background .2s;
+    }
+    .wa-button:hover { background: #1ebe5a; }
+
+    /* SOCIAL PROOF */
+    .proof {
+      padding: 80px 20px;
+      background: rgba(255,255,255,.02);
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    .proof-inner { max-width: 900px; margin: 0 auto; }
+    .proof h2 { text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 40px; }
+    .proof h2 span { color: var(--gold); }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .testimonial {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .testimonial-text { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: #0a0b0f;
+    }
+    .author-name { font-weight: 600; font-size: 13px; }
+    .author-city { font-size: 11px; color: rgba(255,255,255,.4); }
+    .stars { color: var(--gold); font-size: 12px; margin-bottom: 4px; }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .how h2 { font-size: 28px; font-weight: 700; margin-bottom: 40px; }
+    .how h2 span { color: var(--gold); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .step { padding: 24px; }
+    .step-num {
+      width: 48px; height: 48px;
+      background: rgba(201,162,39,.15);
+      border: 1px solid rgba(201,162,39,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: var(--gold);
+      margin: 0 auto 16px;
+    }
+    .step-title { font-weight: 700; margin-bottom: 6px; }
+    .step-desc { font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* FOOTER CTA */
+    .footer-cta {
+      background: radial-gradient(ellipse at center, rgba(201,162,39,.1) 0%, transparent 70%);
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .footer-cta h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .footer-cta p { color: rgba(255,255,255,.6); margin-bottom: 32px; }
+
+    /* LOGO */
+    .logo {
+      position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 800; font-size: 18px;
+    }
+    .logo span { color: var(--gold); }
+
+    @media(max-width: 600px) {
+      .form-card { padding: 24px 20px; }
+      .stats { gap: 24px; }
+      .hero { padding: 80px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo">🦷 <span>Denti Luxe</span></div>
+
+  <div class="badge">✨ +200 sourires transformés au Maroc</div>
+
+  <h1>Ton nouveau sourire<br/><span>en 1 séance</span></h1>
+
+  <p class="subtitle">
+    Facettes composites naturelles à partir de 400 DH/dent.<br/>
+    Sans douleur. Résultat immédiat. Consultation <strong>gratuite</strong>.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">1h</div>
+      <div class="stat-label">Durée séance</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">400 DH</div>
+      <div class="stat-label">À partir de / dent</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Douleur</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Satisfaction</div>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-card">
+    <div id="formView">
+      <div class="form-title">Réserve ta consultation</div>
+      <div class="form-sub">Gratuite · Sans engagement · Réponse en 2 min</div>
+
+      <form id="leadForm">
+        <div class="field">
+          <label>Prénom *</label>
+          <input type="text" name="name" placeholder="Ton prénom" required />
+        </div>
+        <div class="field">
+          <label>WhatsApp *</label>
+          <input type="tel" name="phone" placeholder="+212 6XX XXX XXX" required />
+        </div>
+        <div class="field">
+          <label>Ville *</label>
+          <select name="city" required>
+            <option value="">Sélectionne ta ville</option>
+            <option>Casablanca</option>
+            <option>Rabat</option>
+            <option>Marrakech</option>
+            <option>Fès</option>
+            <option>Tanger</option>
+            <option>Agadir</option>
+            <option>Meknès</option>
+            <option>Oujda</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Soin souhaité</label>
+          <select name="treatment">
+            <option value="">Je veux me renseigner</option>
+            <option value="facettes composites">Facettes composites</option>
+            <option value="facettes céramiques">Facettes céramiques</option>
+            <option value="blanchiment">Blanchiment dentaire</option>
+            <option value="autre">Autre traitement</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Réserver ma consultation gratuite →
+        </button>
+        <div class="privacy">🔒 Tes données sont 100% confidentielles</div>
+      </form>
+    </div>
+
+    <div class="success-screen" id="successView">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">C'est enregistré !</div>
+      <div class="success-text">
+        Notre équipe va te contacter sur WhatsApp dans les prochaines minutes.
+        Tu peux aussi nous écrire directement :
+      </div>
+      <a id="waLink" href="#" class="wa-button" target="_blank">
+        💬 Écrire sur WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="how">
+  <h2>Comment ça <span>marche</span> ?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Consultation gratuite</div>
+      <div class="step-desc">On évalue ton sourire et on te montre le résultat possible</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Séance unique</div>
+      <div class="step-desc">Les facettes sont posées en 1h chez notre dentiste partenaire</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Sourire transformé</div>
+      <div class="step-desc">Tu ressors avec ton nouveau sourire. Sans douleur, sans suites</div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="proof">
+  <div class="proof-inner">
+    <h2>Ce qu'elles disent de leur <span>transformation</span></h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"J'avais peur mais franchement c'était indolore. En 1h mon sourire était complètement transformé. Je regrette juste de ne pas l'avoir fait avant !"</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">F</div>
+          <div>
+            <div class="author-name">Fatima R.</div>
+            <div class="author-city">Casablanca · Facettes composites</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Wach 3jabni hada service! Sofia répondit tout de suite, RDV le lendemain, résultat incroyable. Toutes mes amies m'ont demandé où j'avais fait ça."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">N</div>
+          <div>
+            <div class="author-name">Nadia M.</div>
+            <div class="author-city">Rabat · Facettes + Blanchiment</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Je me suis mariée avec le sourire de mes rêves. Denti Luxe m'a accompagnée du premier message jusqu'au jour J. Je recommande les yeux fermés."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sara A.</div>
+            <div class="author-city">Marrakech · Facettes céramiques</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2>Prêt(e) à transformer<br/>ton sourire ?</h2>
+  <p>Consultation 100% gratuite · Sans engagement · Réponse en 2 minutes</p>
+  <button class="btn-submit" style="max-width:320px;margin:0 auto;display:block"
+    onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">
+    Je réserve ma consultation →
+  </button>
+</section>
+
+<script>
+  // UTM params tracking
+  function getUTM() {
+    const p = new URLSearchParams(window.location.search);
+    return {
+      utm_source: p.get('utm_source') || 'direct',
+      utm_campaign: p.get('utm_campaign') || '',
+      utm_content: p.get('utm_content') || '',
+      utm_medium: p.get('utm_medium') || ''
+    };
+  }
+
+  // Formater le numéro marocain
+  function formatPhone(phone) {
+    let p = phone.replace(/[\s\-\(\)]/g, '');
+    if (p.startsWith('06') || p.startsWith('07')) p = '+212' + p.slice(1);
+    if (p.startsWith('212') && !p.startsWith('+')) p = '+' + p;
+    return p;
+  }
+
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const data = Object.fromEntries(new FormData(this));
+    data.phone = formatPhone(data.phone);
+    data.source = 'landing_page';
+    Object.assign(data, getUTM());
+
+    try {
+      // Enregistrer dans le CRM
+      const apiBase = window.DENTI_LUXE_API_URL || '';
+      await fetch(`${apiBase}/api/leads/public`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: data.phone,
+          name: data.name,
+          source: 'landing_page',
+          utm_campaign: data.utm_campaign,
+          utm_content: data.utm_content,
+          language: 'mixed',
+          treatment_interest: data.treatment || null,
+          city: data.city,
+          meta_lead_id: null
+        })
+      }).catch(() => {}); // Fail silently si CRM pas encore connecté
+
+      // Facebook Pixel Lead event
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+    } catch(err) {
+      console.log('CRM unavailable, continuing...');
+    }
+
+    // Afficher le succès
+    document.getElementById('formView').style.display = 'none';
+    const successView = document.getElementById('successView');
+    successView.style.display = 'block';
+
+    // Lien WhatsApp avec message pré-rempli
+    const waNum = window.DENTI_LUXE_WA || '212772207947';
+    const msg = encodeURIComponent(`Salam! Ana ${data.name} mn ${data.city}. Bghit n7jez consultation gratuite pour les ${data.treatment || 'facettes'} 😊`);
+    document.getElementById('waLink').href = `https://wa.me/${waNum}?text=${msg}`;
+  });
+</script>
+
+</body>
+</html>
