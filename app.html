@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExoFix — Éditeur de fichiers Exocad en ligne</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html" style="text-decoration:none;color:inherit;">
+      <span class="logo-icon">🦷</span>
+      <span class="logo-text">Exo<strong>Fix</strong></span>
+    </a>
+    <p class="tagline">Éditeur de fichiers Exocad — 100 % dans votre navigateur</p>
+    <a href="index.html" class="back-home" style="margin-left:auto;color:#fff;opacity:.85;font-size:13px;text-decoration:none;">← Accueil</a>
+  </header>
+
+  <main>
+    <!-- Zone de dépôt -->
+    <section id="drop-zone" class="card drop-zone" aria-label="Zone de dépôt de fichier">
+      <div class="drop-inner">
+        <div class="drop-icon">📂</div>
+        <p class="drop-title">Déposez votre fichier exocad ici</p>
+        <p class="drop-subtitle">Formats supportés : <code>.constructionInfo</code>, <code>.xml</code>, <code>.3ox</code></p>
+        <label class="btn btn-primary" for="file-input">
+          Choisir un fichier
+          <input type="file" id="file-input" accept=".constructionInfo,.xml,.3ox,.txt" hidden />
+        </label>
+      </div>
+    </section>
+
+    <!-- Panneau d'édition (masqué jusqu'au chargement) -->
+    <section id="editor-panel" class="hidden">
+      <div class="editor-header card">
+        <div class="file-info">
+          <span class="file-icon">📄</span>
+          <div>
+            <p id="file-name" class="file-name">—</p>
+            <p id="file-type" class="file-type">—</p>
+          </div>
+        </div>
+        <div class="editor-actions">
+          <button class="btn btn-secondary" id="btn-reset">Nouveau fichier</button>
+          <button class="btn btn-success" id="btn-download">⬇ Télécharger le fichier corrigé</button>
+        </div>
+      </div>
+
+      <!-- Onglets -->
+      <div class="tabs card">
+        <button class="tab-btn active" data-tab="params">Paramètres</button>
+        <button class="tab-btn" data-tab="raw">Code XML brut</button>
+        <button class="tab-btn" data-tab="summary">Résumé</button>
+      </div>
+
+      <!-- Onglet : Paramètres -->
+      <div id="tab-params" class="tab-content card">
+        <div class="section-header">
+          <h2>Paramètres du fichier</h2>
+          <div class="search-box">
+            <input type="text" id="param-search" placeholder="Rechercher un paramètre…" />
+          </div>
+        </div>
+        <div id="params-container"></div>
+      </div>
+
+      <!-- Onglet : XML brut -->
+      <div id="tab-raw" class="tab-content card hidden">
+        <div class="section-header">
+          <h2>Code XML brut</h2>
+          <button class="btn btn-secondary btn-sm" id="btn-copy-xml">Copier</button>
+        </div>
+        <textarea id="raw-xml" spellcheck="false"></textarea>
+        <div class="raw-actions">
+          <button class="btn btn-primary" id="btn-apply-raw">Appliquer les modifications XML</button>
+        </div>
+      </div>
+
+      <!-- Onglet : Résumé -->
+      <div id="tab-summary" class="tab-content card hidden">
+        <h2>Résumé du fichier</h2>
+        <div id="summary-container"></div>
+      </div>
+    </section>
+
+    <!-- Toast notifications -->
+    <div id="toast-container"></div>
+  </main>
+
+  <footer>
+    <p>ExoFix &copy; 2026 — Outil professionnel pour laboratoires dentaires · <a href="index.html" style="color:inherit;">Accueil</a></p>
+  </footer>
+
+  <script src="js/parser.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

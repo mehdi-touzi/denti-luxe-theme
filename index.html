@@ -3,95 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Denti-Luxe — Éditeur Exocad</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>ExoFix — Corrigez vos fichiers Exocad en quelques secondes</title>
+  <meta name="description" content="ExoFix est l'éditeur de fichiers Exocad en ligne pour laboratoires dentaires. Modifiez et corrigez vos fichiers .constructionInfo, .xml et .3ox directement dans votre navigateur, sans installation. Vos fichiers ne quittent jamais votre ordinateur." />
+  <meta property="og:title" content="ExoFix — L'éditeur de fichiers Exocad en ligne" />
+  <meta property="og:description" content="Corrigez un paramètre dans un fichier Exocad sans rouvrir tout le cas. Rapide, privé, sans installation." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="css/landing.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <span class="logo-icon">🦷</span>
-      <span class="logo-text">Denti<strong>Luxe</strong></span>
-    </div>
-    <p class="tagline">Éditeur de fichiers Exocad</p>
+
+  <!-- ===== Barre de navigation ===== -->
+  <header class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-icon">🦷</span>
+      <span class="brand-text">Exo<strong>Fix</strong></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#probleme">Le problème</a>
+      <a href="#fonctionnalites">Fonctionnalités</a>
+      <a href="#etapes">Comment ça marche</a>
+      <a href="app.html" class="nav-cta">Ouvrir l'éditeur</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- Zone de dépôt -->
-    <section id="drop-zone" class="card drop-zone" aria-label="Zone de dépôt de fichier">
-      <div class="drop-inner">
-        <div class="drop-icon">📂</div>
-        <p class="drop-title">Déposez votre fichier exocad ici</p>
-        <p class="drop-subtitle">Formats supportés : <code>.constructionInfo</code>, <code>.xml</code>, <code>.3ox</code></p>
-        <label class="btn btn-primary" for="file-input">
-          Choisir un fichier
-          <input type="file" id="file-input" accept=".constructionInfo,.xml,.3ox,.txt" hidden />
-        </label>
+  <main id="top">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="badge">🚀 Bientôt disponible — rejoignez la liste d'attente</span>
+        <h1>Corrigez vos fichiers Exocad <span class="hl">en quelques secondes</span>.</h1>
+        <p class="hero-sub">
+          ExoFix est l'éditeur en ligne pensé pour les laboratoires dentaires.
+          Modifiez un paramètre dans un fichier <code>.constructionInfo</code>, <code>.xml</code> ou <code>.3ox</code>
+          sans rouvrir tout le cas dans DentalCAD. Le tout directement dans votre navigateur.
+        </p>
+        <div class="hero-actions">
+          <a href="#waitlist" class="btn btn-primary btn-lg">Rejoindre la liste d'attente</a>
+          <a href="app.html" class="btn btn-ghost btn-lg">Essayer l'éditeur →</a>
+        </div>
+        <p class="hero-trust">🔒 Vos fichiers restent sur votre ordinateur — aucun envoi sur un serveur.</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="mock-window">
+          <div class="mock-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="mock-title">couronne_14.constructionInfo</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-row"><span class="mk">Cement gap</span><span class="mv">0.030 mm</span></div>
+            <div class="mock-row edited"><span class="mk">Espacement occlusal</span><span class="mv">0.050 mm ✎</span></div>
+            <div class="mock-row"><span class="mk">Matériau</span><span class="mv">Zircone</span></div>
+            <div class="mock-row"><span class="mk">Épaisseur min.</span><span class="mv">0.50 mm</span></div>
+            <div class="mock-row edited"><span class="mk">Marge</span><span class="mv">0.025 mm ✎</span></div>
+            <div class="mock-foot">⬇ Télécharger le fichier corrigé</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Panneau d'édition (masqué jusqu'au chargement) -->
-    <section id="editor-panel" class="hidden">
-      <div class="editor-header card">
-        <div class="file-info">
-          <span class="file-icon">📄</span>
-          <div>
-            <p id="file-name" class="file-name">—</p>
-            <p id="file-type" class="file-type">—</p>
-          </div>
+    <!-- ===== Problème ===== -->
+    <section id="probleme" class="section">
+      <h2 class="section-title">Un détail à corriger ? Vous perdez 10 minutes.</h2>
+      <p class="section-lead">
+        Modifier la valeur d'un seul paramètre dans un fichier Exocad oblige aujourd'hui à
+        rouvrir le cas complet, recharger les scans et naviguer dans les menus. Pénible quand
+        on enchaîne des dizaines de cas par jour.
+      </p>
+      <div class="cards-3">
+        <div class="card">
+          <div class="card-icon">⏱️</div>
+          <h3>Lent</h3>
+          <p>Rouvrir tout un cas juste pour ajuster un cement gap ou un espacement, c'est du temps perdu à chaque correction.</p>
         </div>
-        <div class="editor-actions">
-          <button class="btn btn-secondary" id="btn-reset">Nouveau fichier</button>
-          <button class="btn btn-success" id="btn-download">⬇ Télécharger le fichier corrigé</button>
+        <div class="card">
+          <div class="card-icon">🧩</div>
+          <h3>Risqué</h3>
+          <p>Éditer le XML « à la main » dans un bloc-notes, c'est s'exposer aux fichiers cassés et aux cas illisibles par DentalCAD.</p>
         </div>
-      </div>
-
-      <!-- Onglets -->
-      <div class="tabs card">
-        <button class="tab-btn active" data-tab="params">Paramètres</button>
-        <button class="tab-btn" data-tab="raw">Code XML brut</button>
-        <button class="tab-btn" data-tab="summary">Résumé</button>
-      </div>
-
-      <!-- Onglet : Paramètres -->
-      <div id="tab-params" class="tab-content card">
-        <div class="section-header">
-          <h2>Paramètres du fichier</h2>
-          <div class="search-box">
-            <input type="text" id="param-search" placeholder="Rechercher un paramètre…" />
-          </div>
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>Sensible</h3>
+          <p>Les fichiers patients ne devraient pas transiter par un service cloud inconnu. La confidentialité n'est pas optionnelle.</p>
         </div>
-        <div id="params-container"></div>
-      </div>
-
-      <!-- Onglet : XML brut -->
-      <div id="tab-raw" class="tab-content card hidden">
-        <div class="section-header">
-          <h2>Code XML brut</h2>
-          <button class="btn btn-secondary btn-sm" id="btn-copy-xml">Copier</button>
-        </div>
-        <textarea id="raw-xml" spellcheck="false"></textarea>
-        <div class="raw-actions">
-          <button class="btn btn-primary" id="btn-apply-raw">Appliquer les modifications XML</button>
-        </div>
-      </div>
-
-      <!-- Onglet : Résumé -->
-      <div id="tab-summary" class="tab-content card hidden">
-        <h2>Résumé du fichier</h2>
-        <div id="summary-container"></div>
       </div>
     </section>
 
-    <!-- Toast notifications -->
-    <div id="toast-container"></div>
+    <!-- ===== Solution / Fonctionnalités ===== -->
+    <section id="fonctionnalites" class="section section-alt">
+      <h2 class="section-title">ExoFix règle tout ça.</h2>
+      <p class="section-lead">Un éditeur clair, rapide et privé, conçu autour de votre flux de travail.</p>
+      <div class="features">
+        <div class="feature"><span class="feature-ico">⚡</span><div><h3>Édition instantanée</h3><p>Glissez votre fichier, modifiez les paramètres dans une interface lisible, téléchargez le fichier corrigé. C'est tout.</p></div></div>
+        <div class="feature"><span class="feature-ico">🔍</span><div><h3>Recherche de paramètres</h3><p>Retrouvez n'importe quel réglage parmi des centaines, regroupés par thème, en tapant son nom.</p></div></div>
+        <div class="feature"><span class="feature-ico">🧱</span><div><h3>Mode XML brut</h3><p>Pour les experts : accédez au XML complet, modifiez-le et réappliquez-le avec validation automatique.</p></div></div>
+        <div class="feature"><span class="feature-ico">📦</span><div><h3>Formats Exocad</h3><p>Compatible <code>.constructionInfo</code>, <code>.xml</code> et <code>.3ox</code> — les formats que vous utilisez déjà.</p></div></div>
+        <div class="feature"><span class="feature-ico">🔒</span><div><h3>100 % privé</h3><p>Tout se passe dans votre navigateur. Aucun fichier n'est jamais envoyé vers un serveur.</p></div></div>
+        <div class="feature"><span class="feature-ico">🖥️</span><div><h3>Aucune installation</h3><p>Pas de logiciel à installer ni de licence. Ouvrez une page web et travaillez.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ===== Comment ça marche ===== -->
+    <section id="etapes" class="section">
+      <h2 class="section-title">Trois étapes, zéro friction.</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><h3>Déposez votre fichier</h3><p>Glissez-déposez votre fichier Exocad dans l'éditeur, ou choisissez-le depuis votre ordinateur.</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Modifiez les paramètres</h3><p>Ajustez les valeurs voulues dans une interface claire, ou éditez le XML directement.</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Téléchargez la correction</h3><p>Récupérez votre fichier corrigé, prêt à être rouvert dans Exocad.</p></div>
+      </div>
+      <div class="center"><a href="app.html" class="btn btn-primary btn-lg">Tester l'éditeur maintenant →</a></div>
+    </section>
+
+    <!-- ===== Liste d'attente ===== -->
+    <section id="waitlist" class="section waitlist">
+      <div class="waitlist-box">
+        <h2>Rejoignez la liste d'attente</h2>
+        <p>
+          ExoFix se construit avec les laboratoires dentaires. Laissez votre e-mail pour être
+          prévenu·e du lancement, accéder à la bêta en avant-première et obtenir un tarif fondateur.
+        </p>
+
+        <form id="waitlist-form" class="waitlist-form" novalidate>
+          <div class="field-row">
+            <input type="email" id="wl-email" name="email" placeholder="vous@laboratoire.fr" autocomplete="email" required />
+            <button type="submit" class="btn btn-primary btn-lg" id="wl-submit">Je m'inscris</button>
+          </div>
+          <label class="field-optional">
+            <input type="text" id="wl-lab" name="lab" placeholder="Nom du laboratoire (optionnel)" autocomplete="organization" />
+          </label>
+          <p class="form-msg" id="wl-msg" role="status" aria-live="polite"></p>
+          <p class="form-fineprint">Pas de spam. Un seul e-mail au lancement. Désinscription en un clic.</p>
+        </form>
+
+        <p class="waitlist-count" id="wl-count" hidden></p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section section-alt">
+      <h2 class="section-title">Questions fréquentes</h2>
+      <div class="faq">
+        <details><summary>Mes fichiers patients sont-ils en sécurité ?</summary><p>Oui. ExoFix fonctionne entièrement dans votre navigateur : vos fichiers ne sont jamais téléversés vers un serveur. Tout le traitement est local.</p></details>
+        <details><summary>Quels formats sont pris en charge ?</summary><p>Les fichiers <code>.constructionInfo</code>, <code>.xml</code> et <code>.3ox</code> d'Exocad. D'autres formats pourront être ajoutés selon vos retours.</p></details>
+        <details><summary>Faut-il installer un logiciel ?</summary><p>Non. ExoFix est une application web. Il suffit d'ouvrir la page dans un navigateur récent.</p></details>
+        <details><summary>Combien ça coûte ?</summary><p>L'éditeur est utilisable dès maintenant. Les inscrits à la liste d'attente bénéficieront d'un tarif fondateur sur les futures fonctionnalités avancées.</p></details>
+        <details><summary>ExoFix est-il affilié à exocad GmbH ?</summary><p>Non. ExoFix est un outil indépendant et n'est pas affilié à exocad GmbH. « Exocad » est une marque de son propriétaire respectif.</p></details>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>Denti-Luxe &copy; 2024 — Outil professionnel pour laboratoires dentaires</p>
+  <!-- ===== Pied de page ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-icon">🦷</span> <strong>ExoFix</strong>
+        <p>L'éditeur de fichiers Exocad en ligne pour laboratoires dentaires.</p>
+      </div>
+      <div class="footer-links">
+        <a href="app.html">Ouvrir l'éditeur</a>
+        <a href="#waitlist">Liste d'attente</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+      </div>
+    </div>
+    <p class="footer-copy">ExoFix &copy; 2026 — Non affilié à exocad GmbH.</p>
   </footer>
 
-  <script src="js/parser.js"></script>
-  <script src="js/editor.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/waitlist.js"></script>
 </body>
 </html>
