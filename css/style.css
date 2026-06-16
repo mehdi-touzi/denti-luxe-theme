@@ -80,6 +80,8 @@ main {
 }
 
 .drop-inner { padding: 40px 20px; }
+.drop-or { margin: 14px 0 12px; font-size: 12px; color: var(--text-muted); }
+.drop-hint { margin-top: 14px; font-size: 12px; color: var(--text-muted); }
 .drop-icon { font-size: 52px; margin-bottom: 16px; }
 .drop-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .drop-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }

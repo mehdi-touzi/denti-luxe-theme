@@ -34,6 +34,23 @@
     if (fileInput.files[0]) loadFile(fileInput.files[0]);
   });
 
+  // ── Charger le fichier d'exemple fourni ───────────────────────────
+  const btnExample = document.getElementById('btn-example');
+  if (btnExample) {
+    btnExample.addEventListener('click', async () => {
+      const url = 'examples/exemple_couronne.constructionInfo';
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('exemple introuvable (' + res.status + ')');
+        const text = await res.text();
+        const file = new File([text], 'exemple_couronne.constructionInfo', { type: 'application/xml' });
+        loadFile(file);
+      } catch (err) {
+        showToast("Impossible de charger l'exemple : " + err.message, 'error', 6000);
+      }
+    });
+  }
+
   // ── Chargement du fichier ─────────────────────────────────────────
   async function loadFile(file) {
     currentFile = file;
