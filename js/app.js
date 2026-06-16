@@ -34,16 +34,45 @@
     if (fileInput.files[0]) loadFile(fileInput.files[0]);
   });
 
-  // ── Charger le fichier d'exemple fourni ───────────────────────────
+  // ── Charger le fichier d'exemple (intégré, aucun réseau requis) ────
+  const EXAMPLE_XML = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<ConstructionInfo version="3.5" software="exocad DentalCAD" date="2024-01-15">',
+    '  <Patient name="Dupont Jean" id="PAT-001" dateOfBirth="1975-03-22" />',
+    '  <Order labOrderId="CMD-2024-0042" clinicName="Cabinet Sourire Plus" dentistName="Dr. Martin" />',
+    '  <Jaw jaw="upper" toothSystem="FDI">',
+    '    <ToothRange from="14" to="14">',
+    '      <ToothRestoration toothNumber="14" restorationKind="crown" material="ZrO2" shade="A2">',
+    '        <CrownParameters marginHeight="0.5" wallThickness="0.8" occlusalThickness="1.2" minThickness="0.4" smoothingIterations="10" useAnatomy="true" copyAnatomy="false" anatomyCopyFactor="0.7" />',
+    '        <Spacer value="0.05" marginAreaSpacer="0.0" />',
+    '        <CementGap value="0.08" />',
+    '        <Offset occlusal="0.0" vestibular="0.0" lingual="0.0" mesial="0.0" distal="0.0" />',
+    '      </ToothRestoration>',
+    '    </ToothRange>',
+    '    <ToothRange from="15" to="15">',
+    '      <ToothRestoration toothNumber="15" restorationKind="crown" material="ZrO2" shade="A3">',
+    '        <CrownParameters marginHeight="0.5" wallThickness="0.8" occlusalThickness="1.2" minThickness="0.4" smoothingIterations="10" useAnatomy="true" copyAnatomy="false" anatomyCopyFactor="0.7" />',
+    '        <Spacer value="0.05" marginAreaSpacer="0.0" />',
+    '        <CementGap value="0.08" />',
+    '      </ToothRestoration>',
+    '    </ToothRange>',
+    '  </Jaw>',
+    '  <Milling>',
+    '    <MillingParameters blockName="IPS e.max CAD" blockColor="A2-HT" millingStrategy="highSpeed" />',
+    '    <MinObjectSize value="0.3" />',
+    '  </Milling>',
+    '  <OutputSettings>',
+    '    <Export format="STL" resolution="high" units="mm" />',
+    '    <Files saveConstructionFile="true" saveStl="true" />',
+    '  </OutputSettings>',
+    '</ConstructionInfo>'
+  ].join('\n');
+
   const btnExample = document.getElementById('btn-example');
   if (btnExample) {
-    btnExample.addEventListener('click', async () => {
-      const url = 'examples/exemple_couronne.constructionInfo';
+    btnExample.addEventListener('click', () => {
       try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error('exemple introuvable (' + res.status + ')');
-        const text = await res.text();
-        const file = new File([text], 'exemple_couronne.constructionInfo', { type: 'application/xml' });
+        const file = new File([EXAMPLE_XML], 'exemple_couronne.constructionInfo', { type: 'application/xml' });
         loadFile(file);
       } catch (err) {
         showToast("Impossible de charger l'exemple : " + err.message, 'error', 6000);
